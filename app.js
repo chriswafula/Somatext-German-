@@ -23,6 +23,21 @@ function initApp() {
 // --- 3. Authentication Flow ---
 function handleLogin(event) {
     event.preventDefault();
+    function loginAsGhost() {
+    // 1. Create the ghost user automatically
+    currentUser = {
+        name: "Ghost Admin",
+        email: "admin@deutsch-app.local",
+        completedLessons: [] // Starts at 0 lessons
+    };
+    
+    // 2. Save them to local storage
+    saveUser();
+    
+    // 3. Force the app to open the dashboard
+    showDashboard();
+}
+
     const name = document.getElementById('auth-name').value;
     const email = document.getElementById('auth-email').value;
 
