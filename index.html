@@ -48,7 +48,7 @@
                     Access Dashboard
                 </button>
             </form>
-
+            
             <div class="mt-6 pt-6 border-t border-gray-800 text-center">
                 <button onclick="loginAsGhost()" class="text-sm text-gray-400 hover:text-white underline transition">
                     Skip login & continue as Ghost Admin
@@ -57,7 +57,6 @@
         </section>
 
         <section id="dashboard-view" class="hidden space-y-8">
-            
             <div class="bg-darkCard p-6 rounded-2xl border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="w-full md:w-2/3">
                     <h2 class="text-xl font-bold text-white mb-2">Your Learning Progress</h2>
@@ -76,32 +75,51 @@
 
             <div>
                 <h3 class="text-lg font-bold text-white mb-4">Curriculum Track</h3>
-                <div id="module-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div id="module-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
+        </section>
+
+        <section id="lesson-view" class="hidden space-y-6">
+            <button onclick="showDashboard()" class="text-gray-400 hover:text-white flex items-center text-sm transition">
+                ← Back to Dashboard
+            </button>
+            
+            <div class="bg-darkCard p-8 rounded-2xl border border-gray-800">
+                <h2 id="lesson-title" class="text-3xl font-bold text-white mb-6"></h2>
+                
+                <div id="lesson-content" class="prose prose-invert max-w-none text-gray-300 space-y-6">
                     </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-700">
+                    <button id="start-quiz-btn" class="w-full md:w-auto bg-primaryGreen hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg transition">
+                        Take Assessment (Requires 80% to Pass)
+                    </button>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <div id="assessment-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
-        <div class="bg-darkCard p-8 rounded-2xl border border-gray-700 max-w-lg w-full">
+    <div id="assessment-modal" class="hidden fixed inset-0 bg-black/95 overflow-y-auto p-4 z-50">
+        <div class="bg-darkCard p-6 md:p-8 rounded-2xl border border-gray-700 max-w-2xl w-full mx-auto my-8">
             <div class="flex justify-between items-center mb-6">
-                <h3 id="assessment-title" class="text-2xl font-bold text-white">Lesson Assessment</h3>
+                <h3 id="assessment-title" class="text-2xl font-bold text-white">Assessment</h3>
                 <span class="bg-yellow-500/20 text-yellow-500 text-xs font-bold px-3 py-1 rounded-full">10 Questions</span>
             </div>
             
-            <p class="text-gray-400 mb-6 text-sm">
-                To unlock the next lesson, you must pass this 10-question assessment. 
-                <br><br>
-                <i class="text-gray-500">(For this prototype, clicking "Submit Answers" simulates scoring 100% on the 10 questions).</i>
+            <p class="text-gray-400 mb-6 text-sm border-b border-gray-800 pb-4">
+                You must score at least <strong>8 out of 10</strong> to unlock the next module.
             </p>
             
+            <div id="quiz-container" class="space-y-8 mb-8">
+                </div>
+            
             <div class="flex flex-col space-y-3 mt-8">
-                <button onclick="submitAssessment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg transition">
+                <button onclick="submitAssessment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-4 rounded-lg transition text-lg">
                     Submit Answers & Grade
                 </button>
                 <button onclick="closeAssessment()" class="w-full bg-transparent border border-gray-600 hover:border-gray-400 text-gray-300 font-bold py-3 px-4 rounded-lg transition">
-                    Cancel
+                    Cancel & Return to Lesson
                 </button>
             </div>
         </div>
@@ -110,34 +128,3 @@
     <script src="./app.js"></script>
 </body>
 </html>
-                </button>
-        </div> "auth-view" class="max-w-md mx-auto mt-12 bg-darkCard p-8 rounded-2xl border border-gray-800">
-            <h2 class="text-2xl font-bold text-white mb-2">Student Login</h2>
-            <p class="text-gray-400 mb-6 text-sm">Enter your details to pick up where you left off.</p>
-            
-            <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
-                    <input type="text" id="auth-name" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
-                    <input type="email" id="auth-email" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
-                </div>
-                <button type="submit" class="w-full bg-primaryGreen hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
-                    Access Dashboard
-                </button>
-            </form>
-        </section>
-
-        <section id="dashboard-view" class="hidden space-y-8">
-            
-            <div class="bg-darkCard p-6 rounded-2xl border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="w-full md:w-2/3">
-                    <h2 class="text-xl font-bold text-white mb-2">Your Learning Progress</h2>
-                    <div class="w-full bg-gray-800 rounded-full h-4 mb-1">
-                        <div id="progress-bar" class="bg-primaryGreen h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
-                    </div>
-                    <p id="progress-text" class="text-sm text-gray-400">0 of 40 Lessons Completed</p>
-                </div>
-                <div class="w-full
