@@ -1,0 +1,18 @@
+{
+  "name": "Deutsch A1 Progression Hub",
+  "short_name": "Deutsch A1",
+  "description": "Learn German A1 with progression tracking.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#047857",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/5111/5111601.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
