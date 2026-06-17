@@ -3,138 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>German Learner A1</title>
+    <title>Learn German A1 - Master the Basics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Customizing a sleek dark theme palette
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#121212',
-                        darkCard: '#1E1E1E',
-                        accentAmber: '#F59E0B'
+                        primaryGreen: '#047857',
+                        darkBg: '#1A1A1A',
+                        lightText: '#F3F4F6'
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-darkBg text-gray-100 min-h-screen font-sans">
+<body class="bg-darkBg text-lightText font-sans antialiased">
 
-    <header class="border-b border-gray-800 p-6 sticky top-0 bg-darkBg z-10">
-        <div class="max-w-xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight">German A1 Course</h1>
-            <span class="text-xs bg-gray-800 text-gray-400 px-3 py-1 rounded-full">Student Portal</span>
+    <!-- Navigation -->
+    <nav class="border-b border-gray-700 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-extrabold text-white tracking-tight">Deutsch A1</a>
+            <div class="space-x-6 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-primaryGreen transition-colors">About</a>
+                <a href="#curriculum" class="hover:text-primaryGreen transition-colors">Modules</a>
+                <a href="#signup" class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-black h-[500px] flex items-center justify-center overflow-hidden">
+        <!-- Background Photo Placeholder -->
+        <div class="absolute inset-0 opacity-50 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc932f95b?q=80&w=1000')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-darkBg to-transparent"></div>
+        
+        <div class="relative z-10 text-center max-w-3xl px-4">
+            <h1 class="text-5xl sm:text-6xl font-extrabold mb-6 leading-tight">Start Your Journey to Mastering German</h1>
+            <p class="text-lg sm:text-xl text-gray-300 mb-8 font-light">Comprehensive, progression-based learning designed to take you from a complete beginner to confidently speaking A1 German.</p>
+            <a href="#signup" class="bg-primaryGreen text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg shadow-primaryGreen/50 hover:bg-emerald-600 transition-transform transform hover:-translate-y-1 inline-block">Join the Course</a>
         </div>
     </header>
 
-    <main class="max-w-xl mx-auto p-4 mt-4 space-y-4" id="module-container">
-        </main>
-
-    <div id="payment-modal" class="fixed inset-0 bg-black/80 flex items-end sm:items-center justify-center p-4 hidden z-50">
-        <div class="bg-darkCard w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 border border-gray-800 transform transition-transform">
-            <h3 class="text-xl font-bold mb-2" id="modal-title">Unlock Module</h3>
-            <p class="text-gray-400 text-sm mb-6" id="modal-description">Get instant access to all grammar, vocabulary exercises, and audio tracks.</p>
-            
-            <div class="space-y-3">
-                <button onclick="simulatePayment()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl transition">
-                    Simulate Successful Payment (Test Mode)
-                </button>
-                <button onclick="closeModal()" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold py-3 px-4 rounded-xl transition">
-                    Cancel
-                </button>
-            </div>
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 bg-gray-900/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Why Learn With Us?</h2>
+            <p class="text-gray-400 text-lg leading-relaxed">Our curriculum is broken down into easily digestible modules. From basic introductions to daily life scenarios, we ensure you build a strong foundation. Track your progress, complete the modules, and earn your official A1 certification upon completion.</p>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // 1. Define your curriculum
-        const curriculum = [
-            { id: "A1.1", title: "German A1.1", description: "The Basics & Introductions", price: "Free" },
-            { id: "A1.2", title: "German A1.2", description: "Daily Life & Shopping", price: "100 KES" }
-        ];
+    <!-- Sign Up Section -->
+    <section id="signup" class="py-20 px-4">
+        <div class="max-w-md mx-auto bg-gray-800 p-8 rounded-2xl shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Create Your Account</h2>
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                    <input type="text" class="w-full px-4 py-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:border-primaryGreen text-white" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                    <input type="email" class="w-full px-4 py-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:border-primaryGreen text-white" placeholder="john@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Password</label>
+                    <input type="password" class="w-full px-4 py-3 bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:border-primaryGreen text-white" placeholder="••••••••">
+                </div>
+                <button type="button" class="w-full bg-primaryGreen text-white font-bold py-3 rounded-lg hover:bg-emerald-600 transition-colors mt-4">Sign Up</button>
+            </form>
+        </div>
+    </section>
 
-        let activeTargetModuleId = null;
-
-        // 2. Initialize or fetch unlocked modules from browser storage
-        // A1.1 is ALWAYS unlocked by default
-        if (!localStorage.getItem('unlocked_modules')) {
-            localStorage.setItem('unlocked_modules', JSON.stringify(['A1.1']));
-        }
-
-        function getUnlockedModules() {
-            return JSON.parse(localStorage.getItem('unlocked_modules'));
-        }
-
-        // 3. Render the module list dynamically
-        function renderModules() {
-            const container = document.getElementById('module-container');
-            const unlockedList = getUnlockedModules();
-            container.innerHTML = '';
-
-            curriculum.forEach((module, index) => {
-                const isUnlocked = unlockedList.includes(module.id);
-                
-                // Create card elements
-                const card = document.createElement('div');
-                card.className = `p-5 rounded-2xl border transition-all duration-200 cursor-pointer ${
-                    isUnlocked 
-                    ? 'bg-darkCard border-gray-800 shadow-lg hover:border-gray-700' 
-                    : 'bg-zinc-900/50 border-zinc-900 opacity-60'
-                }`;
-                
-                card.onclick = () => handleModuleClick(module.id, isUnlocked, module.price);
-
-                card.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h2 class="text-lg font-bold ${isUnlocked ? 'text-white' : 'text-gray-500'}">${module.title}</h2>
-                            <p class="text-sm text-gray-400 mt-1">${module.description}</p>
-                        </div>
-                        <div>
-                            ${isUnlocked 
-                                ? `<svg class="w-8 h-8 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>`
-                                : `<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>`
-                            }
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // 4. Handle user interactions
-        function handleModuleClick(id, isUnlocked, price) {
-            if (isUnlocked) {
-                alert(`Opening contents for ${id}! (You can redirect to your grammar page here)`);
-            } else {
-                activeTargetModuleId = id;
-                document.getElementById('modal-title').innerText = `Unlock ${id}`;
-                document.getElementById('modal-description').innerText = `Unlock premium access to all lessons in this block for just ${price}.`;
-                document.getElementById('payment-modal').classList.remove('hidden');
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('payment-modal').classList.add('hidden');
-            activeTargetModuleId = null;
-        }
-
-        function simulatePayment() {
-            if (activeTargetModuleId) {
-                const unlockedList = getUnlockedModules();
-                if (!unlockedList.includes(activeTargetModuleId)) {
-                    unlockedList.push(activeTargetModuleId);
-                    localStorage.setItem('unlocked_modules', JSON.stringify(unlockedList));
-                }
-                closeModal();
-                renderModules(); // Instant UI refresh!
-            }
-        }
-
-        // Start the app view
-        renderModules();
-    </script>
 </body>
 </html>
