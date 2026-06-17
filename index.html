@@ -3,207 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn German A1 - Master the Basics</title>
-   <link rel="manifest" href="manifest.json">
+    <title>Deutsch A1 Progression Hub</title>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#047857">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        primaryGreen: '#047857',
-                        darkBg: '#121212',
-                        darkCard: '#1E1E1E',
-                        lightText: '#F3F4F6'
-                    }
+                    colors: { primaryGreen: '#047857', darkBg: '#121212', darkCard: '#1E1E1E', lightText: '#F3F4F6' }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-darkBg text-lightText font-sans antialiased scroll-smooth">
+<body class="bg-darkBg text-lightText font-sans min-h-screen">
 
-    <nav class="border-b border-gray-800 bg-zinc-900/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-extrabold text-white tracking-tight">Deutsch A1</a>
-            <div class="space-x-6 text-sm font-medium text-gray-300 flex items-center">
-                <a href="#about" class="hover:text-primaryGreen transition-colors hidden sm:inline">About</a>
-                <a href="#curriculum" class="hover:text-primaryGreen transition-colors">Modules</a>
-                <a href="#signup" class="bg-primaryGreen text-white px-4 py-2 rounded-xl hover:bg-emerald-600 transition-colors shadow-md shadow-primaryGreen/20">Sign Up</a>
+    <header class="bg-darkCard p-6 border-b border-gray-800">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-primaryGreen">Deutsch A1</h1>
+            <div id="user-controls" class="hidden">
+                <span id="welcome-text" class="text-gray-400 text-sm mr-4"></span>
+                <button onclick="handleLogout()" class="text-sm text-red-400 hover:text-red-300 transition">Log Out</button>
             </div>
-        </div>
-    </nav>
-
-    <header class="relative bg-black h-[520px] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200')] bg-cover bg-center"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/60 to-transparent"></div>
-        
-        <div class="relative z-10 text-center max-w-3xl px-6">
-            <span class="text-xs font-bold tracking-widest text-primaryGreen uppercase bg-emerald-950/50 border border-emerald-800 px-3 py-1 rounded-full">Complete A1 Course</span>
-            <h1 class="text-4xl sm:text-6xl font-extrabold mt-4 mb-6 leading-tight text-white">Start Your Journey to Mastering German</h1>
-            <p class="text-base sm:text-xl text-gray-300 mb-8 font-light max-w-2xl mx-auto">Progression-based lessons designed to build confidence, lock in essential vocabulary, and earn your official A1 completion certificate.</p>
-            <a href="#signup" class="bg-primaryGreen text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg shadow-primaryGreen/30 hover:bg-emerald-600 transition-all inline-block transform hover:-translate-y-0.5">Join the Course Track</a>
         </div>
     </header>
 
-    <section id="about" class="py-20 px-6 max-w-4xl mx-auto text-center border-b border-gray-900">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-white">Interactive Progression Learning</h2>
-        <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">Our curriculum targets realistic day-to-day communication. Complete interactive segments, monitor your milestones, and instantly print your validation documentation once everything is conquered.</p>
-    </section>
-
-    <section id="curriculum" class="py-20 px-6 max-w-xl mx-auto">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold text-white mb-2">Your Learning Track</h2>
-            <p class="text-gray-400 text-sm">Unlock blocks sequentially to progress forward</p>
-        </div>
+    <main class="max-w-4xl mx-auto p-6 mt-4">
         
-        <div class="space-y-4" id="module-container"></div>
-    </section>
-
-    <section id="signup" class="py-20 px-6 bg-zinc-900/40 border-t border-gray-900">
-        <div class="max-w-md mx-auto bg-darkCard p-8 rounded-2xl border border-gray-800 shadow-xl">
-            <h2 class="text-2xl font-bold mb-2 text-center text-white">Create Student Profile</h2>
-            <p class="text-gray-400 text-sm text-center mb-6">Register to secure your milestones and certificate baseline.</p>
+        <section id="auth-view" class="max-w-md mx-auto mt-12 bg-darkCard p-8 rounded-2xl border border-gray-800">
+            <h2 class="text-2xl font-bold text-white mb-2">Student Login</h2>
+            <p class="text-gray-400 mb-6 text-sm">Enter your details to pick up where you left off.</p>
             
-            <form class="space-y-4" onsubmit="handleRegistration(event)">
+            <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Full Name (For Certificate)</label>
-                    <input type="text" required id="reg-name" class="w-full px-4 py-3 bg-zinc-900 rounded-xl border border-gray-800 focus:outline-none focus:border-primaryGreen text-white placeholder-gray-600 transition-colors" placeholder="e.g. Chrispus Musambai">
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                    <input type="text" id="auth-name" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Email Address</label>
-                    <input type="email" required id="reg-email" class="w-full px-4 py-3 bg-zinc-900 rounded-xl border border-gray-800 focus:outline-none focus:border-primaryGreen text-white placeholder-gray-600 transition-colors" placeholder="student@example.com">
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
+                    <input type="email" id="auth-email" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
                 </div>
-                <button type="submit" class="w-full bg-primaryGreen text-white font-bold py-3.5 rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-primaryGreen/20 mt-2">
-                    Register & Begin Track
+                <button type="submit" class="w-full bg-primaryGreen hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+                    Access Dashboard
                 </button>
             </form>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-8 text-center text-xs text-gray-600 border-t border-gray-900">
-        &copy; 2026 Deutsch A1 Progression Hub. All rights reserved.
-    </footer>
-
-    <div id="payment-modal" class="fixed inset-0 bg-black/80 flex items-end sm:items-center justify-center p-4 hidden z-50 backdrop-blur-xs">
-        <div class="bg-darkCard w-full max-w-md rounded-t-2xl sm:rounded-2xl p-6 border border-gray-800 shadow-2xl">
-            <h3 class="text-xl font-bold text-white mb-2" id="modal-title">Unlock Module</h3>
-            <p class="text-gray-400 text-sm mb-6" id="modal-description"></p>
+        <section id="dashboard-view" class="hidden space-y-8">
             
-            <div class="space-y-3">
-                <button onclick="simulatePayment()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl transition-colors shadow-md">
-                    Verify & Unlock Block
-                </button>
-                <button onclick="closeModal()" class="w-full bg-zinc-900 hover:bg-zinc-800 text-gray-400 font-semibold py-3 px-4 rounded-xl transition-colors border border-gray-800">
-                    Go Back
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const curriculum = [
-            { id: "A1.1", title: "German A1.1", description: "The Basics & Core Introductions", price: "Free Access" },
-            { id: "A1.2", title: "German A1.2", description: "Daily Life & Routine Dialogue", price: "100 KES" }
-        ];
-
-        let activeTargetModuleId = null;
-
-        // Initialize user tracking parameters on client browser storage
-        if (!localStorage.getItem('unlocked_modules')) {
-            localStorage.setItem('unlocked_modules', JSON.stringify(['A1.1']));
-        }
-
-        function getUnlockedModules() {
-            return JSON.parse(localStorage.getItem('unlocked_modules'));
-        }
-
-        function renderModules() {
-            const container = document.getElementById('module-container');
-            const unlockedList = getUnlockedModules();
-            container.innerHTML = '';
-
-            curriculum.forEach((module, index) => {
-                const isUnlocked = unlockedList.includes(module.id);
-                const card = document.createElement('div');
-                
-                card.className = `p-5 rounded-2xl border transition-all duration-200 cursor-pointer ${
-                    isUnlocked 
-                    ? 'bg-darkCard border-gray-800 shadow-md hover:border-zinc-700' 
-                    : 'bg-zinc-900/30 border-zinc-900/80 opacity-50 hover:opacity-70'
-                }`;
-                
-                card.onclick = () => handleModuleClick(module.id, isUnlocked, module.price);
-
-                card.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h3 class="text-base sm:text-lg font-bold ${isUnlocked ? 'text-white' : 'text-gray-500'}">${module.title}</h3>
-                            <p class="text-xs sm:text-sm text-gray-400 mt-1">${module.description}</p>
-                        </div>
-                        <div class="ml-4 flex-shrink-0">
-                            ${isUnlocked 
-                                ? `<svg class="w-8 h-8 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>`
-                                : `<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>`
-                            }
-                        </div>
+            <div class="bg-darkCard p-6 rounded-2xl border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="w-full md:w-2/3">
+                    <h2 class="text-xl font-bold text-white mb-2">Your Learning Progress</h2>
+                    <div class="w-full bg-gray-800 rounded-full h-4 mb-1">
+                        <div id="progress-bar" class="bg-primaryGreen h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
                     </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function handleModuleClick(id, isUnlocked, price) {
-            if (isUnlocked) {
-                alert(`🚀 Access Granted: Opening curriculum index for ${id}. (We will hook your content interface right here!)`);
-            } else {
-                activeTargetModuleId = id;
-                document.getElementById('modal-title').innerText = `Unlock ${id}`;
-                document.getElementById('modal-description').innerText = `Unlock full lifetime access to comprehensive sub-chapters, dynamic quizzes, grammar drills, and download your final profile completion certificate for ${price}.`;
-                document.getElementById('payment-modal').classList.remove('hidden');
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('payment-modal').classList.add('hidden');
-            activeTargetModuleId = null;
-        }
-
-        function simulatePayment() {
-            if (activeTargetModuleId) {
-                const unlockedList = getUnlockedModules();
-                if (!unlockedList.includes(activeTargetModuleId)) {
-                    unlockedList.push(activeTargetModuleId);
-                    localStorage.setItem('unlocked_modules', JSON.stringify(unlockedList));
-                }
-                closeModal();
-                renderModules();
-            }
-        }
-
-        function handleRegistration(event) {
-            event.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            
-            // Local fallback simulation tracking
-            localStorage.setItem('student_name', name);
-            localStorage.setItem('student_email', email);
-            
-            alert(`🎉 Welcome ${name}! Your student track profile has been successfully generated locally. Scroll up to explore your modules!`);
-        }
-
-        // Run rendering sequence
-        renderModules();
-        // Register the service worker for PWA installability
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('Service Worker registered!'))
-            .catch(err => console.log('Service Worker failed: ', err));
-    });
-}
-
-    </script>
-</body>
-</html>
+                    <p id="progress-text" class="text-sm text-gray-400">0 of 40 Lessons Completed</p>
+                </div>
+                <div class="w-full
