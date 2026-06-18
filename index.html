@@ -6,26 +6,31 @@
     <title>Somatex Edu Hub | Portal</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#070D19">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                        hubBg: '#070D19', 
-                        hubCard: '#0E1A30', 
-                        hubText: '#ECF0F1',
-                        cboOrange: '#F39C12', 
-                        cboBlue: '#2471A3', 
-                        cboGreen: '#27AE60',
-                        cboRed: '#C0392B',
-                        deGold: '#FFCC00'
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
+        :root {
+            --color-hubBg: #070D19;
+            --color-hubCard: #0E1A30;
+            --color-hubText: #ECF0F1;
+            --color-cboOrange: #F39C12;
+            --color-cboBlue: #2471A3;
+            --color-cboGreen: #27AE60;
+            --color-cboRed: #C0392B;
+            --color-deGold: #FFCC00;
+        }
+        body { background-color: var(--color-hubBg); color: var(--color-hubText); }
+        .bg-hubCard { background-color: var(--color-hubCard); }
+        .text-cboOrange { color: var(--color-cboOrange); }
+        .bg-cboOrange { background-color: var(--color-cboOrange); }
+        .border-cboOrange { border-color: var(--color-cboOrange); }
+        .text-cboBlue { color: var(--color-cboBlue); }
+        .border-cboBlue { border-color: var(--color-cboBlue); }
+        .text-cboGreen { color: var(--color-cboGreen); }
+        .bg-cboGreen { background-color: var(--color-cboGreen); }
+        .border-cboGreen { border-color: var(--color-cboGreen); }
+        .text-cboRed { color: var(--color-cboRed); }
+        .border-cboRed { border-color: var(--color-cboRed); }
+
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #070D19; }
         ::-webkit-scrollbar-thumb { background: #0E1A30; border-radius: 10px; border: 1px solid #F39C12; }
@@ -69,21 +74,20 @@
                     <p class="text-[10px] text-gray-400 tracking-widest uppercase font-bold">Bridging Technology &amp; Rural Classrooms</p>
                 </div>
             </div>
-            <div id="user-controls" class="hidden flex items-center gap-4">
-                <button id="admin-toggle-btn" aria-label="Toggle Teacher Dashboard" onclick="toggleAdminDashboard()" class="hidden text-xs bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-2 px-4 rounded-xl transition shadow-lg">
+            <div id="user-controls" class="hidden items-center gap-4">
+                <button id="admin-toggle-btn" aria-label="Toggle Teacher Dashboard" onclick="toggleAdminDashboard()" class="hidden text-xs bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-2 px-4 rounded-xl transition shadow-lg cursor-pointer">
                     ⚙️ Teacher Console
                 </button>
-                <button aria-label="Log Out" onclick="handleLogout()" class="text-xs bg-gray-900 hover:bg-gray-800 text-cboRed font-bold py-2 px-4 rounded-xl border border-gray-800 transition">
+                <button aria-label="Log Out" onclick="handleLogout()" class="text-xs bg-gray-900 hover:bg-gray-800 text-cboRed font-bold py-2 px-4 rounded-xl border border-gray-800 transition cursor-pointer">
                     Log Out
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-6xl mx-auto p-4 md:p-8 w-full box-border flex flex-col justify-center">
+    <main class="flex-grow max-w-6xl mx-auto p-4 md:p-8 w-full box-border flex flex-col justify-start">
         
-        <!-- Auth View -->
-        <section id="auth-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
+        <section id="auth-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto w-full">
             <div class="lg:col-span-6 space-y-6 hidden lg:block relative p-8 bg-hubCard rounded-3xl border border-gray-800/80 shadow-2xl overflow-hidden">
                 <div class="absolute -top-10 -left-10 w-40 h-40 bg-cboOrange/5 rounded-full blur-3xl"></div>
                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-cboBlue/5 rounded-full blur-3xl"></div>
@@ -111,15 +115,15 @@
 
             <div class="lg:col-span-6 bg-hubCard p-6 md:p-8 rounded-3xl border border-gray-800 shadow-2xl relative">
                 <div class="flex bg-black/40 p-1.5 rounded-xl border border-gray-800 mb-6" role="tablist">
-                    <button role="tab" aria-selected="true" onclick="toggleAuthMode('signin')" id="btn-tab-signin" class="w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg transition-all shadow-md">
+                    <button role="tab" aria-selected="true" onclick="toggleAuthMode('signin')" id="btn-tab-signin" class="w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg transition-all shadow-md cursor-pointer">
                         Student Sign In
                     </button>
-                    <button role="tab" aria-selected="false" onclick="toggleAuthMode('signup')" id="btn-tab-signup" class="w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all">
+                    <button role="tab" aria-selected="false" onclick="toggleAuthMode('signup')" id="btn-tab-signup" class="w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all cursor-pointer">
                         Request Account
                     </button>
                 </div>
 
-                <form id="form-signin" onsubmit="handleLogin(event)" class="space-y-4">
+                <form id="form-signin" onsubmit="handleLogin(event)" class="space-y-4 text-left">
                     <div>
                         <h3 class="text-xl font-black text-white">Access Portal</h3>
                         <p class="text-xs text-gray-400 mt-1">Provide your verified registry values to download active session states.</p>
@@ -130,14 +134,14 @@
                     </div>
                     <div>
                         <label for="signin-admission" class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Admission Code / ID</label>
-                        <input type="text" id="signin-admission" required placeholder="e.g., 3003" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-cboBlue transition">
+                        <input type="text" id="signin-admission" required placeholder="e.g., MMF-101 or ADMIN-001" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-cboBlue transition">
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-cboBlue to-indigo-900 hover:from-blue-600 hover:to-indigo-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-xl transition-all tracking-wide text-sm uppercase">
+                    <button type="submit" class="w-full bg-gradient-to-r from-cboBlue to-indigo-900 hover:from-blue-600 hover:to-indigo-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-xl transition-all tracking-wide text-sm uppercase cursor-pointer">
                         Authenticate Profile Session
                     </button>
                 </form>
 
-                <form id="form-signup" onsubmit="handleSignUpEntry(event)" class="space-y-4 hidden">
+                <form id="form-signup" onsubmit="handleSignUpEntry(event)" class="space-y-4 hidden text-left">
                     <div>
                         <h3 class="text-xl font-black text-white">Submit Profile Request</h3>
                         <p class="text-xs text-gray-400 mt-1">Data maps explicitly onto internal tracking and eventual validation certificates.</p>
@@ -173,18 +177,119 @@
                     <div class="p-3 bg-cboOrange/10 rounded-xl border border-cboOrange/20 text-[11px] text-cboOrange leading-relaxed" role="alert">
                         ⚠️ **Security Protocol:** Newly compiled registrations stay in a restricted state inside the database architecture until manually cleared by your High School Educator/Admin.
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 px-4 rounded-xl shadow-xl transition-all tracking-wide text-xs uppercase">
+                    <button type="submit" class="w-full bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 px-4 rounded-xl shadow-xl transition-all tracking-wide text-xs uppercase cursor-pointer">
                         Request Account Approval
                     </button>
                 </form>
             </div>
         </section>
 
-        <!-- (Other sections like dashboard-view, lesson-view, admin-view remain exactly the same as your previous code) -->
-        
+        <section id="dashboard-view" class="hidden space-y-8 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-hubCard border border-gray-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-lg">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl"></div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-cboGreen bg-emerald-500/10 px-2 py-1 rounded-md">Validated Identity</span>
+                    <h3 id="student-badge-name" class="text-xl font-black text-white mt-4">---</h3>
+                    <p id="student-badge-adm" class="text-xs text-gray-400 font-mono mt-1">ADM: ---</p>
+                    <div class="border-t border-gray-800/80 my-4"></div>
+                    <div class="grid grid-cols-2 gap-y-3 text-[11px]">
+                        <div><span class="text-gray-500 block">Location Node</span><span id="student-badge-location" class="text-gray-300 font-semibold">---</span></div>
+                        <div><span class="text-gray-500 block">Country</span><span id="student-badge-country" class="text-gray-300 font-semibold">---</span></div>
+                        <div class="col-span-2"><span class="text-gray-500 block">Active Routing Phone</span><span id="student-badge-phone" class="text-gray-300 font-mono">---</span></div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bg-hubCard border border-gray-800 rounded-2xl p-6 flex flex-col justify-between text-left shadow-lg">
+                    <div>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md">Curriculum Meter</span>
+                        <h3 class="text-lg font-bold text-white mt-4">German A1 Track Milestone Metrics</h3>
+                        <p id="progress-text" class="text-xs text-gray-400 mt-1">0 / 40 Completed</p>
+                        <div class="w-full bg-gray-950 rounded-full h-2.5 mt-4 border border-gray-800 overflow-hidden">
+                            <div id="progress-bar" class="bg-cboGreen h-full w-0 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                    <button id="cert-btn" onclick="generateCertificate()" disabled class="w-full mt-4 bg-gray-800 text-gray-500 font-bold py-2.5 px-4 rounded-xl text-xs cursor-not-allowed border border-gray-700 transition uppercase tracking-wider">Generate Registry Milestone Certificate</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div class="lg:col-span-3 space-y-4">
+                    <h3 class="text-left font-black tracking-tight text-lg text-white">Interactive Syllabus Tracks</h3>
+                    <div id="module-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-left font-black tracking-tight text-lg text-white">Broadcast Repositories</h3>
+                    <div id="resource-container" class="space-y-3">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lesson-view" class="hidden max-w-2xl mx-auto bg-hubCard border border-gray-800 rounded-2xl p-8 text-left shadow-2xl my-6 w-full">
+            <button onclick="showDashboard()" class="text-xs font-bold text-cboGreen hover:text-emerald-300 transition mb-4 block cursor-pointer">← Back to Dashboard Hub</button>
+            <h2 id="lesson-title" class="text-2xl font-black text-white tracking-tight">---</h2>
+            <div class="border-t border-gray-800 my-4"></div>
+            <div id="lesson-content" class="min-h-[150px]">
+                </div>
+            <div class="border-t border-gray-800 my-6"></div>
+            <button id="start-quiz-btn" class="bg-cboGreen hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl text-xs transition uppercase tracking-wider shadow-md cursor-pointer">Launch Verification Evaluation</button>
+        </section>
+
+        <section id="admin-view" class="hidden space-y-8 my-6 text-left w-full">
+            <button onclick="showDashboard()" class="text-xs font-bold text-cboGreen hover:text-emerald-300 transition mb-2 block cursor-pointer">← Return to Main Workspace</button>
+            <h2 class="text-2xl font-black tracking-tight text-white">Teacher Command Center Console</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-hubCard border border-gray-800 rounded-2xl p-6 space-y-4 shadow-lg">
+                    <h3 class="text-sm font-black text-white uppercase tracking-wider">Broadcast Media Deployment</h3>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-gray-400 font-bold mb-1">Asset Display Title</label>
+                            <input type="text" id="resource-title" placeholder="e.g., Live Stream Lecture Link" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 font-bold mb-1">Resource URL Link</label>
+                            <input type="url" id="resource-url" placeholder="https://..." class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <button onclick="publishResource()" class="w-full bg-cboBlue hover:bg-blue-600 text-white font-bold py-2 px-3 rounded-xl transition cursor-pointer">Deploy Asset to Nodes</button>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bg-hubCard border border-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-sm font-black text-white uppercase tracking-wider mb-4">Diagnostic Node Auditing Matrix</h3>
+                    <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs">
+                        <div>
+                            <p id="admin-student-name" class="font-bold text-sm text-white">---</p>
+                            <p id="admin-student-email" class="text-gray-400 font-mono mt-0.5">---</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span class="text-gray-500 block">Security Fail Logs</span>
+                            <span id="admin-fail-count" class="text-sm font-bold text-cboRed font-mono">0</span>
+                        </div>
+                        <button onclick="resetStudentProgress()" class="bg-red-950/40 text-cboRed border border-red-500/20 hover:bg-red-900/30 px-3 py-2 rounded-xl font-bold transition cursor-pointer">Purge Fault Logs</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Custom Toast Notification -->
+    <div id="assessment-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-md z-50 items-center justify-center p-4">
+        <div class="bg-hubCard border border-gray-800 w-full max-w-md rounded-2xl p-6 shadow-2xl relative text-left">
+            <h3 id="assessment-title" class="text-lg font-black text-white tracking-tight">Diagnostic Verification</h3>
+            <div class="border-t border-gray-800 my-3"></div>
+            
+            <div id="quiz-container" class="my-4"></div>
+            
+            <div class="border-t border-gray-800 my-4"></div>
+            <div class="flex gap-3 justify-end text-xs font-bold">
+                <button onclick="closeAssessment()" class="px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl transition cursor-pointer">Close Gate</button>
+                <button onclick="submitAssessment()" class="px-5 py-2.5 bg-cboOrange hover:bg-amber-500 text-white rounded-xl transition shadow-md cursor-pointer uppercase tracking-wider">Submit Verification Key</button>
+            </div>
+        </div>
+    </div>
+
     <div id="custom-toast" class="hidden fixed bottom-5 right-5 md:bottom-10 md:right-10 bg-hubCard border-l-4 border-cboGreen text-white px-6 py-4 rounded-xl shadow-2xl z-50 transform transition-all duration-500 translate-y-10 opacity-0 flex items-center gap-4">
         <span class="text-2xl bg-cboGreen/20 p-2 rounded-full" aria-hidden="true">✓</span>
         <div>
@@ -193,47 +298,133 @@
         </div>
     </div>
 
-    <!-- (Footer remains the same) -->
-
-    <script src="./app.js"></script>
     <script>
-        // Custom UI Toast Function
+        // --- 1. CORE STATE MANAGEMENT ENGINE ---
+        let appState = {
+            isTeacher: false,
+            currentUser: null,
+            failedAttempts: 0,
+            completedLessons: new Set(),
+            totalLessons: 40,
+            externalResources: [
+                { title: "📺 Welcome Video: Kickstart Your German A1 Journey", url: "https://youtube.com/watch?v=example1" },
+                { title: "📝 Mitua Massive CBO Partnership Overview & Syllabus", url: "https://docs.google.com/document/d/example" }
+            ],
+            activeLesson: null
+        };
+
+        // --- 2. THE CHOSEN 40-LESSON GERMAN A1 SYLLABUS TRACK DATASET ---
+        const sampleLessons = [
+            { id: 1, title: "Lesson 1: Das Alphabet & Pronunciation", module: "Module 1: Foundations", content: "Welcome! In German, 'W' sounds like 'V', 'V' sounds like 'F', and 'J' sounds like 'Y'. 'Ä', 'Ö', and 'Ü' are umlauts. 'ß' is a double 's'.", question: "Which English letter does the German 'W' sound like?", answer: "v" },
+            { id: 2, title: "Lesson 2: Begrüßungen (Greetings)", module: "Module 1: Foundations", content: "Greet people based on time: 'Guten Morgen' (Morning), 'Guten Tag' (Day), 'Guten Abend' (Evening). 'Hallo' is casual, 'Tschüss' is casual goodbye.", question: "Translate into German: 'Good morning'", answer: "guten morgen" },
+            { id: 3, title: "Lesson 3: Sich vorstellen (Introductions)", module: "Module 1: Foundations", content: "To say your name: 'Ich heiße...' or 'Mein Name ist...'. To ask formally: 'Wie heißen Sie?'. Informally: 'Wie heißt du?'.", question: "Translate: 'My name is'", answer: "mein name ist" },
+            { id: 4, title: "Lesson 4: Woher kommst du? (Origins)", module: "Module 1: Foundations", content: "To say where you are from, use 'Ich komme aus...' (I come from...). For example: 'Ich komme aus Kenia' or 'Ich komme aus Deutschland'.", question: "Translate: 'I come from'", answer: "ich komme aus" },
+            { id: 5, title: "Lesson 5: Zahlen 1-20 (Numbers)", module: "Module 1: Foundations", content: "1 to 10: eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn. 11: elf, 12: zwölf. Master these for daily transactions.", question: "What is the German word for the number 5?", answer: "fünf" },
+            { id: 6, title: "Lesson 6: Die Artikel (Der, Die, Das)", module: "Module 2: Basic Grammar", content: "German has 3 genders for 'the': 'der' (masculine), 'die' (feminine/plural), 'das' (neuter). Always learn nouns with their articles!", question: "Which article is used for feminine nouns?", answer: "die" },
+            { id: 7, title: "Lesson 7: Personalpronomen (Pronouns)", module: "Module 2: Basic Grammar", content: "Ich (I), du (you singular informal), er (he), sie (she/they), es (it), wir (we), ihr (you plural informal), Sie (you formal).", question: "What is the formal word for 'you' in German?", answer: "sie" },
+            { id: 8, title: "Lesson 8: The Verb 'sein' (to be)", module: "Module 2: Basic Grammar", content: "'Sein' is irregular. Ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind. Example: 'Ich bin Student' (I am a student).", question: "Translate: 'I am'", answer: "ich bin" },
+            { id: 9, title: "Lesson 9: The Verb 'haben' (to have)", module: "Module 2: Basic Grammar", content: "'Haben' is crucial. Ich habe, du hast, er/sie/es hat, wir haben, ihr habt, sie/Sie haben. Example: 'Ich habe Zeit' (I have time).", question: "Translate: 'He has'", answer: "er hat" },
+            { id: 10, title: "Lesson 10: Die Familie (Family)", module: "Module 2: Basic Grammar", content: "Der Vater (father), die Mutter (mother), der Bruder (brother), die Schwester (sister). Use 'mein' (my masculine/neuter) and 'meine' (my feminine/plural).", question: "Translate: 'The mother'", answer: "die mutter" },
+            { id: 11, title: "Lesson 11: Wochentage (Days of the Week)", module: "Module 3: Daily Life", content: "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag. Use 'am' before days: 'am Montag' (on Monday).", question: "What is the German word for Friday?", answer: "freitag" },
+            { id: 12, title: "Lesson 12: Monate & Jahreszeiten (Months & Seasons)", module: "Module 3: Daily Life", content: "Seasons: der Sommer, der Winter, der Herbst, der Frühling. Use 'im' before months and seasons: 'im Sommer' (in summer).", question: "Translate: 'In summer'", answer: "im sommer" },
+            { id: 13, title: "Lesson 13: Die Uhrzeit (Telling Time)", module: "Module 3: Daily Life", content: "Ask 'Wie spät ist es?' (What time is it?). Answer: 'Es ist...'. 'Viertel nach' is quarter past, 'halb' is half to the next hour.", question: "Translate: 'What time is it?' (Leave out punctuation)", answer: "wie spät ist es" },
+            { id: 14, title: "Lesson 14: Essen und Trinken (Food & Drink)", module: "Module 3: Daily Life", content: "Das Wasser (water), das Brot (bread), der Apfel (apple), der Kaffee (coffee). 'Ich esse' (I eat), 'Ich trinke' (I drink).", question: "Translate: 'The water'", answer: "das wasser" },
+            { id: 15, title: "Lesson 15: Im Café (Ordering in a Cafe)", module: "Module 3: Daily Life", content: "To order politely, say 'Ich hätte gern...' (I would like to have...) or 'Ich möchte...' (I would like...). 'Bitte' means please/you're welcome.", question: "Translate: 'I would like'", answer: "ich möchte" },
+            { id: 16, title: "Lesson 16: The Accusative Case (Direct Objects)", module: "Module 4: Accusative Case", content: "The Accusative case is for direct objects. Only masculine articles change! 'der' becomes 'den', 'ein' becomes 'einen'. Die and Das stay the same.", question: "In the accusative case, 'der' changes to what?", answer: "den" },
+            { id: 17, title: "Lesson 17: Orte in der Stadt (Places in the City)", module: "Module 4: Accusative Case", content: "Der Bahnhof (train station), die Post (post office), das Krankenhaus (hospital). 'Ich suche den Bahnhof' (I am looking for the train station).", question: "Translate: 'The hospital'", answer: "das krankenhaus" },
+            { id: 18, title: "Lesson 18: Verkehrsmittel (Transportation)", module: "Module 4: Accusative Case", content: "Der Bus, der Zug (train), das Auto (car), das Fahrrad (bicycle). To say you travel by something, use 'mit dem' (e.g., mit dem Bus).", question: "Translate: 'The train'", answer: "der zug" },
+            { id: 19, title: "Lesson 19: Negation (Nicht vs. Kein)", module: "Module 4: Accusative Case", content: "Use 'kein' to negate a noun with an indefinite article (Ich habe kein Auto). Use 'nicht' to negate verbs or adjectives (Das ist nicht gut).", question: "Which word do you use to negate a noun with an indefinite article?", answer: "kein" },
+            { id: 20, title: "Lesson 20: Fragewörter (Question Words)", module: "Module 4: Accusative Case", content: "Wer (Who), Was (What), Wo (Where), Wann (When), Warum (Why), Wie (How). Example: 'Wo ist der Bahnhof?'", question: "Translate the question word: 'Where'", answer: "wo" },
+            { id: 21, title: "Lesson 21: Berufe (Professions)", module: "Module 5: Work & Abilities", content: "To state your job: 'Ich bin Arzt von Beruf' (I am a doctor by profession). Note: Female professions usually end in '-in' (die Ärztin).", question: "What suffix is usually added for a female profession?", answer: "in" },
+            { id: 22, title: "Lesson 22: Modal Verb: Können (Can/Ability)", module: "Module 5: Work & Abilities", content: "'Können' expresses ability. Ich kann, du kannst, er kann. The second verb goes to the very END of the sentence in its infinitive form.", question: "Translate: 'I can'", answer: "ich kann" },
+            { id: 23, title: "Lesson 23: Modal Verb: Müssen (Must/Necessity)", module: "Module 5: Work & Abilities", content: "'Müssen' means must. Ich muss, du musst, er muss. 'Ich muss heute arbeiten' (I must work today).", question: "Translate: 'I must'", answer: "ich must" },
+            { id: 24, title: "Lesson 24: Modal Verb: Wollen (Want to)", module: "Module 5: Work & Abilities", content: "'Wollen' expresses a strong desire or plan. Ich will, du willst, er will. 'Ich will Deutsch lernen' (I want to learn German).", question: "Translate: 'I want'", answer: "ich will" },
+            { id: 25, title: "Lesson 25: Der Imperativ (Commands)", module: "Module 5: Work & Abilities", content: "Commands are used for instructions. Formal: 'Kommen Sie!' (Come!). Informal singular: 'Komm!' (Come!). Let's go: 'Gehen wir!'", question: "Translate into an informal singular command: 'Come!'", answer: "komm" },
+            { id: 26, title: "Lesson 26: Der Körper (Body Parts)", module: "Module 6: Health & Dative", content: "Der Kopf (head), der Arm (arm), das Bein (leg), der Bauch (stomach). 'Mein Kopf tut weh' means 'My head hurts'.", question: "Translate: 'The head'", answer: "der kopf" },
+            { id: 27, title: "Lesson 27: Beim Arzt (At the Doctor)", module: "Module 6: Health & Dative", content: "To express illness: 'Ich bin krank' (I am sick). The doctor might ask 'Was fehlt Ihnen?' (What is wrong with you?).", question: "Translate: 'I am sick'", answer: "ich bin krank" },
+            { id: 28, title: "Lesson 28: Intro to Dative Case (Indirect Objects)", module: "Module 6: Health & Dative", content: "Dative indicates the receiver. Articles change drastically: der->dem, das->dem, die->der, die(plural)->den. 'Ich helfe dem Mann' (I help the man).", question: "In the Dative case, 'der' changes to what?", answer: "dem" },
+            { id: 29, title: "Lesson 29: Prepositions with Dative", module: "Module 6: Health & Dative", content: "Some prepositions ALWAYS take Dative: aus, bei, mit, nach, seit, von, zu. Example: 'Ich fahre mit dem Bus' (I travel with the bus).", question: "Which case always follows the preposition 'mit'?", answer: "dative" },
+            { id: 30, title: "Lesson 30: Kleidung (Clothing)", module: "Module 6: Health & Dative", content: "Die Hose (pants), das Hemd (shirt), die Jacke (jacket). 'Ich trage eine Jacke' (I am wearing a jacket).", question: "Translate: 'The jacket'", answer: "die jacke" },
+            { id: 31, title: "Lesson 31: Das Haus (The House)", module: "Module 7: Living Spaces", content: "Das Wohnzimmer (living room), die Küche (kitchen), das Schlafzimmer (bedroom), das Bad (bathroom).", question: "Translate: 'The kitchen'", answer: "die küche" },
+            { id: 32, title: "Lesson 32: Möbel (Furniture)", module: "Module 7: Living Spaces", content: "Der Tisch (table), der Stuhl (chair), das Bett (bed), der Schrank (closet).", question: "Translate: 'The bed'", answer: "das bett" },
+            { id: 33, title: "Lesson 33: Trennbare Verben (Separable Verbs)", module: "Module 7: Living Spaces", content: "Some verbs split. 'aufstehen' (to wake up). In a standard sentence, the prefix goes to the end: 'Ich stehe um 7 Uhr auf'.", question: "Where does the separable prefix go in a standard sentence?", answer: "end" },
+            { id: 34, title: "Lesson 34: Freizeit & Hobbys (Free Time)", module: "Module 7: Living Spaces", content: "Lesen (to read), spielen (to play), schwimmen (to swim). 'Was machst du in deiner Freizeit?' (What do you do in your free time?).", question: "Translate: 'To read'", answer: "lesen" },
+            { id: 35, title: "Lesson 35: Einkaufen (Shopping)", module: "Module 7: Living Spaces", content: "Teuer (expensive), billig (cheap). 'Wie viel kostet das?' (How much does that cost?).", question: "Translate: 'Expensive'", answer: "teuer" },
+            { id: 36, title: "Lesson 36: Das Perfekt (Past Tense with Haben)", module: "Module 8: Past Tense", content: "Conversational past tense mostly uses 'haben' + a participle (ge-). 'Ich habe gespielt' (I played), 'Ich habe gemacht' (I did/made).", question: "What prefix is commonly used for past participles in German?", answer: "ge" },
+            { id: 37, title: "Lesson 37: Das Perfekt (Past Tense with Sein)", module: "Module 8: Past Tense", content: "Verbs involving movement from A to B (gehen, fahren) use 'sein' instead of haben. 'Ich bin gegangen' (I went).", question: "Does the verb 'gehen' (to go) use 'haben' or 'sein' in the past tense?", answer: "sein" },
+            { id: 38, title: "Lesson 38: Briefe schreiben (Writing Letters/Emails)", module: "Module 8: Past Tense", content: "Formal start: 'Sehr geehrte(r)...'. Informal start: 'Liebe(r)...'. Formal end: 'Mit freundlichen Grüßen'.", question: "Translate the formal sign-off: 'Mit freundlichen Grüßen'", answer: "with kind regards" },
+            { id: 39, title: "Lesson 39: Speaking Exam Prep", module: "Module 8: Past Tense", content: "In the A1 speaking exam, you must introduce yourself: Name, Alter (age), Land (country), Wohnort (living place), Sprachen (languages), Beruf (profession).", question: "Translate: 'Age'", answer: "alter" },
+            { id: 40, title: "Lesson 40: Final A1 Certification Validation", module: "Module 8: Past Tense", content: "Congratulations! You have covered the A1 structures. Validate your final milestone to unlock the Mitua Massive CBO Certificate generation.", question: "Type 'zertifikat' to complete your A1 level track.", answer: "zertifikat" }
+        ];
+
+        // --- 3. TOAST GENERATOR UTILITY ---
         function showToast(message) {
             const toast = document.getElementById('custom-toast');
             document.getElementById('toast-message').innerText = message;
             
             toast.classList.remove('hidden');
-            
-            // Small delay to trigger CSS transition
             setTimeout(() => {
                 toast.classList.remove('translate-y-10', 'opacity-0');
             }, 10);
             
-            // Auto-hide after 5 seconds
             setTimeout(() => {
                 toast.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 500); // Wait for fade out
-            }, 5000);
+                setTimeout(() => { toast.classList.add('hidden'); }, 500);
+            }, 4000);
         }
 
-        // Updated Sign Up Logic
+        // --- 4. SECURE REFRESHLESS AUTHENTICATION FLOWS ---
+        function handleLogin(event) {
+            event.preventDefault(); // STOPS Page refreshing!
+            
+            const phone = document.getElementById('signin-phone').value.trim();
+            const admCode = document.getElementById('signin-admission').value.trim();
+
+            appState.currentUser = {
+                name: admCode === "ADMIN-001" ? "System Administrator Node" : "Verified Student Track",
+                admission: admCode,
+                phone: phone,
+                location: "Mitua Massive Hub",
+                country: "Kenya",
+                email: "authenticated@somatex.org"
+            };
+
+            // Switch view states cleanly
+            if (admCode === "ADMIN-001") {
+                appState.isTeacher = true;
+                document.getElementById('admin-toggle-btn').classList.remove('hidden');
+                showToast("System Director Access Granted.");
+            } else {
+                appState.isTeacher = false;
+                document.getElementById('admin-toggle-btn').classList.add('hidden');
+                showToast("Profile Session Mounted Successfully.");
+            }
+
+            initializeDashboard();
+        }
+
+        function handleLogout() {
+            appState.currentUser = null;
+            appState.isTeacher = false;
+            
+            document.getElementById('auth-view').classList.remove('hidden');
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.add('hidden');
+            document.getElementById('user-controls').classList.add('hidden');
+            document.getElementById('user-controls').classList.remove('flex');
+            
+            document.getElementById('form-signin').reset();
+            showToast("Active portal session closed safely.");
+        }
+
         function handleSignUpEntry(e) {
             e.preventDefault();
-            // Trigger the new Toast instead of an alert()
             showToast("Profile sent! Please await manual clearance from your High School Admin.");
-            
-            // Clear the form fields
             document.getElementById('form-signup').reset();
-            
-            // Switch back to Sign In
-            setTimeout(() => {
-                toggleAuthMode('signin');
-            }, 1500);
+            setTimeout(() => { toggleAuthMode('signin'); }, 1500);
         }
 
-        // (Other toggle functions remain the same)
         function toggleAuthMode(mode) {
             const btnSignIn = document.getElementById('btn-tab-signin');
             const btnSignUp = document.getElementById('btn-tab-signup');
@@ -243,18 +434,229 @@
             if (mode === 'signin') {
                 formSignIn.classList.remove('hidden');
                 formSignUp.classList.add('hidden');
-                btnSignIn.className = "w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg transition-all shadow-md";
-                btnSignUp.className = "w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all";
-                btnSignIn.setAttribute('aria-selected', 'true');
-                btnSignUp.setAttribute('aria-selected', 'false');
+                btnSignIn.className = "w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg transition-all shadow-md cursor-pointer";
+                btnSignUp.className = "w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all cursor-pointer";
             } else {
                 formSignUp.classList.remove('hidden');
                 formSignIn.classList.add('hidden');
-                btnSignUp.className = "w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboOrange to-amber-600 rounded-lg transition-all shadow-md";
-                btnSignIn.className = "w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all";
-                btnSignUp.setAttribute('aria-selected', 'true');
-                btnSignIn.setAttribute('aria-selected', 'false');
+                btnSignUp.className = "w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboOrange to-amber-600 rounded-lg transition-all shadow-md cursor-pointer";
+                btnSignIn.className = "w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all cursor-pointer";
             }
+        }
+
+        // --- 5. INITIALIZE VIEW WRAPPERS ---
+        function initializeDashboard() {
+            document.getElementById('auth-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            
+            document.getElementById('user-controls').classList.add('flex');
+            document.getElementById('user-controls').classList.remove('hidden');
+
+            // Set Up Student Badge values
+            document.getElementById('student-badge-name').innerText = appState.currentUser.name;
+            document.getElementById('student-badge-adm').innerText = `ADM ID: ${appState.currentUser.admission}`;
+            document.getElementById('student-badge-location').innerText = appState.currentUser.location;
+            document.getElementById('student-badge-country').innerText = appState.currentUser.country;
+            document.getElementById('student-badge-phone').innerText = appState.currentUser.phone;
+
+            // Set Up Admin Screen fields simultaneously
+            document.getElementById('admin-student-name').innerText = appState.currentUser.name;
+            document.getElementById('admin-student-email').innerText = `${appState.currentUser.email} | Adm: ${appState.currentUser.admission}`;
+            document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
+
+            renderCurriculum();
+            renderResources();
+            updateProgressMeter();
+        }
+
+        // --- 6. GRID LAYOUT BUILDERS ---
+        function renderCurriculum() {
+            const container = document.getElementById('module-container');
+            container.innerHTML = "";
+
+            sampleLessons.forEach(lesson => {
+                const isLocked = lesson.id > 1 && !appState.completedLessons.has(lesson.id - 1);
+                
+                const card = document.createElement('div');
+                card.className = `p-5 rounded-2xl border transition-all text-left ${
+                    isLocked 
+                    ? 'bg-gray-900/30 border-gray-800/80 opacity-40 cursor-not-allowed' 
+                    : 'bg-hubCard border-gray-800 hover:border-cboGreen cursor-pointer shadow-md'
+                }`;
+                
+                if (!isLocked) {
+                    card.onclick = () => openLesson(lesson.id);
+                }
+
+                const status = appState.completedLessons.has(lesson.id) ? "✅ Done" : isLocked ? "🔒 Locked" : "📖 Open";
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] font-black uppercase tracking-wider text-cboOrange">${lesson.module}</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-black/40 text-gray-300 font-bold">${status}</span>
+                    </div>
+                    <h4 class="text-white font-bold mt-2 text-base">${lesson.title}</h4>
+                    <p class="text-xs text-gray-400 mt-1 line-clamp-1">Click to view lesson materials and run diagnostic validation testing.</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderResources() {
+            const container = document.getElementById('resource-container');
+            container.innerHTML = "";
+            
+            appState.externalResources.forEach(res => {
+                const link = document.createElement('a');
+                link.href = res.url;
+                link.target = "_blank";
+                link.className = "block p-4 bg-gray-900 hover:bg-gray-800/60 rounded-xl border-l-4 border-cboBlue transition text-gray-200 text-xs font-semibold shadow-sm mb-2";
+                link.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span>${res.title}</span>
+                        <span class="text-cboBlue text-[10px]">Open ↗</span>
+                    </div>
+                `;
+                container.appendChild(link);
+            });
+        }
+
+        function updateProgressMeter() {
+            const count = appState.completedLessons.size;
+            document.getElementById('progress-text').innerText = `${count} / ${appState.totalLessons} Completed`;
+            
+            const percentage = (count / appState.totalLessons) * 100;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            
+            const certBtn = document.getElementById('cert-btn');
+            if (count >= appState.totalLessons) {
+                certBtn.disabled = false;
+                certBtn.className = "w-full mt-4 bg-cboGreen hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition uppercase tracking-wider cursor-pointer shadow-md";
+            } else {
+                certBtn.disabled = true;
+                certBtn.className = "w-full mt-4 bg-gray-800 text-gray-500 font-bold py-2.5 px-4 rounded-xl text-xs cursor-not-allowed border border-gray-700 transition uppercase tracking-wider";
+            }
+        }
+
+        // --- 7. DYNAMIC LESSON HANDLERS ---
+        function openLesson(lessonId) {
+            const lesson = sampleLessons.find(l => l.id === lessonId);
+            if (!lesson) return;
+            
+            appState.activeLesson = lesson;
+            
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.remove('hidden');
+            
+            document.getElementById('lesson-title').innerText = lesson.title;
+            document.getElementById('lesson-content').innerHTML = `
+                <p class="text-gray-300 text-sm leading-relaxed">${lesson.content}</p>
+                <div class="p-4 bg-black/30 rounded-xl border border-gray-800 mt-6 text-xs">
+                    <span class="text-cboOrange font-bold block mb-1">💡 Study Guidance Note:</span>
+                    To keep internet access costs and bandwidth footprints extremely low for rural setups, verify streaming assets listed under the "Broadcast Media Repositories" portal sidebar whenever connected.
+                </div>
+            `;
+            
+            document.getElementById('start-quiz-btn').onclick = () => openAssessmentModal(lesson);
+        }
+
+        function showDashboard() {
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+            initializeDashboard();
+        }
+
+        // --- 8. EVALUATION MODAL CONTROLLERS ---
+        function openAssessmentModal(lesson) {
+            const modal = document.getElementById('assessment-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            document.getElementById('assessment-title').innerText = `Diagnostic: Lesson ${lesson.id}`;
+            
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="space-y-2 text-left">
+                    <label class="block text-sm font-bold text-white mb-3">${lesson.question}</label>
+                    <input type="text" id="assessment-answer" placeholder="Type answer in lowercase..." autocomplete="off" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-cboOrange transition">
+                </div>
+            `;
+            
+            setTimeout(() => {
+                const inputField = document.getElementById('assessment-answer');
+                if(inputField) inputField.focus();
+            }, 100);
+        }
+
+        function closeAssessment() {
+            const modal = document.getElementById('assessment-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            appState.activeLesson = null;
+        }
+
+        function submitAssessment() {
+            const inputField = document.getElementById('assessment-answer');
+            const answerInput = inputField.value.trim().toLowerCase();
+            const correctAnswer = appState.activeLesson.answer.toLowerCase();
+
+            if (answerInput === correctAnswer) {
+                appState.completedLessons.add(appState.activeLesson.id);
+                showToast(`Success! Lesson ${appState.activeLesson.id} validation clear.`);
+                closeAssessment();
+                initializeDashboard();
+            } else {
+                appState.failedAttempts++;
+                document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
+                
+                inputField.classList.add('border-cboRed', 'bg-cboRed/10');
+                setTimeout(() => {
+                    inputField.classList.remove('border-cboRed', 'bg-cboRed/10');
+                }, 800);
+                
+                showToast("Access Denied: Inaccurate tracking code. Try again.");
+            }
+        }
+
+        // --- 9. TEACHER CONSOLE ROUTERS ---
+        function toggleAdminDashboard() {
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('admin-view').classList.remove('hidden');
+        }
+
+        function resetStudentProgress() {
+            if(confirm("Are you sure you want to purge evaluation metrics?")) {
+                appState.failedAttempts = 0;
+                document.getElementById('admin-fail-count').innerText = "0";
+                showToast("Evaluation Logs Reset Successfully.");
+            }
+        }
+
+        function publishResource() {
+            const title = document.getElementById('resource-title').value.trim();
+            const url = document.getElementById('resource-url').value.trim();
+            
+            if(!title || !url) {
+                showToast("Provide both Asset Title and Web URL.");
+                return;
+            }
+            
+            appState.externalResources.push({ title: `🔗 ${title}`, url: url });
+            document.getElementById('resource-title').value = '';
+            document.getElementById('resource-url').value = '';
+            
+            renderResources();
+            showToast("Asset deployed to all nodes successfully.");
+        }
+
+        function generateCertificate() {
+            if (appState.completedLessons.size < appState.totalLessons) return;
+            showToast("Connecting to Mitua Massive Certification Registry Database Node...");
         }
     </script>
 </body>
