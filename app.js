@@ -26,7 +26,7 @@ const sampleLessons = [
 ];
 
 // Fill out remaining slots dynamically to hit the 40-lesson framework visually
-for (let i = i = 5; i <= 40; i++) {
+for (let i = 5; i <= 40; i++) {
     sampleLessons.push({
         id: i,
         title: `Lesson ${i}: Advanced Progression Content Track`,
@@ -41,40 +41,36 @@ for (let i = i = 5; i <= 40; i++) {
 function handleLogin(event) {
     event.preventDefault();
     
-    appState.currentUser = {
-        name: document.getElementById('auth-name').value.trim(),
-        admission: document.getElementById('auth-admission').value.trim(),
-        email: document.getElementById('auth-email').value.trim(),
-        phone: document.getElementById('auth-phone').value.trim(),
-        country: document.getElementById('auth-country').value.trim(),
-        location: document.getElementById('auth-location').value.trim()
-    };
-    appState.isTeacher = false;
-    
-    initializeDashboard();
-}
+    const admCode = document.getElementById('signin-admission').value.trim();
+    const phone = document.getElementById('signin-phone').value.trim();
 
-function loginAsGhost() {
+    // Mock Login Logic (To be replaced by Firebase Auth)
     appState.currentUser = {
-        name: "Director / Teacher Mode",
-        admission: "MMF-001",
-        email: "admin@somatex.org",
-        phone: "N/A",
+        name: admCode === "ADMIN-001" ? "System Administrator" : "Student Node",
+        admission: admCode,
+        email: "verified@somatex.org",
+        phone: phone,
         country: "Kenya",
-        location: "Nairobi / Mitua Hub"
+        location: "Mitua Hub"
     };
-    appState.isTeacher = true;
     
-    // Reveal teacher access options
-    document.getElementById('admin-toggle-btn').classList.remove('hidden');
+    // Check if user is an Admin using a secure mock key
+    if (admCode === "ADMIN-001") {
+        appState.isTeacher = true;
+        document.getElementById('admin-toggle-btn').classList.remove('hidden');
+        showToast("System Director Mode Activated.");
+    } else {
+        appState.isTeacher = false;
+        document.getElementById('admin-toggle-btn').classList.add('hidden');
+        showToast("Student Profile Authenticated.");
+    }
+    
     initializeDashboard();
 }
 
 function handleLogout() {
     appState.currentUser = null;
     appState.isTeacher = false;
-    appState.failedAttempts = 0;
-    appState.completedLessons.clear();
     
     // UI resets
     document.getElementById('auth-view').classList.remove('hidden');
@@ -82,8 +78,14 @@ function handleLogout() {
     document.getElementById('lesson-view').classList.add('hidden');
     document.getElementById('admin-view').classList.add('hidden');
     document.getElementById('user-controls').classList.add('hidden');
+    document.getElementById('user-controls').classList.remove('flex');
     document.getElementById('admin-toggle-btn').classList.add('hidden');
-    document.querySelector('form').reset();
+    
+    // Clear all forms
+    document.getElementById('form-signin').reset();
+    if(document.getElementById('form-signup')) document.getElementById('form-signup').reset();
+    
+    showToast("Session successfully terminated.");
 }
 
 // --- 4. INITIALIZE DASHBOARD VIEWS ---
@@ -91,11 +93,10 @@ function initializeDashboard() {
     // Hide auth, show dynamic dashboard panel structure
     document.getElementById('auth-view').classList.add('hidden');
     document.getElementById('dashboard-view').classList.remove('hidden');
-    document.getElementById('user-controls').classList.remove('flex');
+    document.getElementById('user-controls').classList.add('flex');
     document.getElementById('user-controls').classList.remove('hidden');
     
     // Map Student Badge UI Fields
-    document.getElementById('welcome-text').innerText = `Hello, ${appState.currentUser.name}`;
     document.getElementById('student-badge-name').innerText = appState.currentUser.name;
     document.getElementById('student-badge-adm').innerText = `ADM: ${appState.currentUser.admission}`;
     document.getElementById('student-badge-location').innerText = appState.currentUser.location;
@@ -121,10 +122,11 @@ function renderCurriculum() {
         const isLocked = lesson.id > 1 && !appState.completedLessons.has(lesson.id - 1);
         
         const card = document.createElement('div');
+        // Integrated custom Tailwind variables
         card.className = `p-5 rounded-xl border transition-all text-left ${
             isLocked 
             ? 'bg-gray-900/40 border-gray-800 opacity-50 cursor-not-allowed' 
-            : 'bg-darkCard border-gray-800 hover:border-primaryGreen cursor-pointer shadow-md'
+            : 'bg-hubCard border-gray-800 hover:border-cboGreen cursor-pointer shadow-md'
         }`;
         
         if (!isLocked) {
@@ -135,11 +137,11 @@ function renderCurriculum() {
 
         card.innerHTML = `
             <div class="flex justify-between items-start">
-                <span class="text-xs font-black uppercase tracking-wider text-primaryGreen">${lesson.module}</span>
+                <span class="text-xs font-black uppercase tracking-wider text-cboGreen">${lesson.module}</span>
                 <span>${statusIcon}</span>
             </div>
             <h4 class="text-white font-bold mt-2 text-base">${lesson.title}</h4>
-            <p class="text-xs text-gray-400 mt-1 line-clamp-1">Click to view lesson materials and run diagnostic validation testing.</p>
+            <p class="text-xs text-gray-400 mt-1 line-clamp-1">Click to view lesson materials and run diagnostic testing.</p>
         `;
         container.appendChild(card);
     });
@@ -155,11 +157,11 @@ function renderResources() {
         const link = document.createElement('a');
         link.href = res.url;
         link.target = "_blank"; // Force opens externally in native browser/YouTube app to save local storage
-        link.className = "block p-4 bg-gray-900 hover:bg-gray-800/80 rounded-xl border-l-4 border-primaryGreen transition text-gray-200 text-sm font-semibold shadow-sm";
+        link.className = "block p-4 bg-gray-900 hover:bg-gray-800/80 rounded-xl border-l-4 border-cboBlue transition text-gray-200 text-sm font-semibold shadow-sm mb-2";
         link.innerHTML = `
             <div class="flex justify-between items-center">
                 <span>${res.title}</span>
-                <span class="text-xs text-gray-500 font-normal">External Link ↗</span>
+                <span class="text-xs text-cboBlue font-normal">External Link ↗</span>
             </div>
         `;
         container.appendChild(link);
@@ -176,10 +178,10 @@ function updateProgressMeter() {
     const certBtn = document.getElementById('cert-btn');
     if (count >= appState.totalLessons) {
         certBtn.disabled = false;
-        certBtn.className = "w-full mt-3 bg-primaryGreen text-white font-bold py-2 px-3 rounded-lg text-xs transition hover:bg-emerald-600 border border-transparent cursor-pointer shadow-md";
+        certBtn.className = "w-full mt-3 bg-cboGreen text-white font-bold py-2 px-3 rounded-xl text-xs transition hover:bg-emerald-600 border border-transparent cursor-pointer shadow-md uppercase tracking-wider";
     } else {
         certBtn.disabled = true;
-        certBtn.className = "w-full mt-3 bg-gray-800 text-gray-500 font-bold py-2 px-3 rounded-lg text-xs cursor-not-allowed border border-gray-700 transition";
+        certBtn.className = "w-full mt-3 bg-gray-800 text-gray-500 font-bold py-2 px-3 rounded-xl text-xs cursor-not-allowed border border-gray-700 transition uppercase tracking-wider";
     }
 }
 
@@ -197,9 +199,9 @@ function openLesson(lessonId) {
     document.getElementById('lesson-title').innerText = lesson.title;
     document.getElementById('lesson-content').innerHTML = `
         <p class="text-gray-300 text-sm leading-relaxed">${lesson.content}</p>
-        <div class="p-4 bg-black/30 rounded-xl border border-gray-800 mt-4 text-xs">
-            <span class="text-amber-500 font-bold block mb-1">💡 Study Guidance Note:</span>
-            To keep internet access costs and bandwidth footprints extremely low for rural setups, verify streaming videos listed under the "Video & Assignments" portal tab whenever you are connected to a high-speed node.
+        <div class="p-4 bg-black/30 rounded-xl border border-gray-800 mt-6 text-xs">
+            <span class="text-cboOrange font-bold block mb-1">💡 Study Guidance Note:</span>
+            To keep internet access costs and bandwidth footprints extremely low for rural setups, verify streaming videos listed under the "Broadcast Media Repositories" portal tab whenever you are connected to a high-speed node.
         </div>
     `;
     
@@ -220,8 +222,96 @@ function openAssessmentModal(lesson) {
     modal.classList.remove('hidden');
     modal.classList.add('flex'); // Centers tailwind layout neatly
     
-    document.getElementById('assessment-title').innerText = `Verification Evaluation: Lesson ${lesson.id}`;
+    document.getElementById('assessment-title').innerText = `Diagnostic: Lesson ${lesson.id}`;
     
     const container = document.getElementById('quiz-container');
     container.innerHTML = `
-        <div class="
+        <div class="space-y-2">
+            <label class="block text-sm font-bold text-white mb-3">${lesson.question}</label>
+            <input type="text" id="assessment-answer" placeholder="Type your answer here..." autocomplete="off" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-cboOrange transition">
+        </div>
+    `;
+    
+    // Auto-focus input for UX
+    setTimeout(() => {
+        const inputField = document.getElementById('assessment-answer');
+        if(inputField) inputField.focus();
+    }, 100);
+}
+
+function closeAssessment() {
+    const modal = document.getElementById('assessment-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    appState.activeLesson = null;
+}
+
+function submitAssessment() {
+    const inputField = document.getElementById('assessment-answer');
+    const answerInput = inputField.value.trim().toLowerCase();
+    const correctAnswer = appState.activeLesson.answer.toLowerCase();
+
+    if (answerInput === correctAnswer) {
+        // Success
+        appState.completedLessons.add(appState.activeLesson.id);
+        showToast(`Verification Successful! Lesson ${appState.activeLesson.id} unlocked.`);
+        closeAssessment();
+        renderCurriculum();
+        updateProgressMeter();
+        showDashboard(); // Kick user back to dashboard to select next lesson
+    } else {
+        // Failure
+        appState.failedAttempts++;
+        document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
+        
+        // Red flash on input
+        inputField.classList.add('border-cboRed', 'bg-cboRed/10');
+        setTimeout(() => {
+            inputField.classList.remove('border-cboRed', 'bg-cboRed/10');
+        }, 800);
+        
+        showToast("Access Denied: Incorrect validation key. Review lesson and try again.");
+    }
+}
+
+// --- 8. TEACHER / ADMIN CONSOLE LOGIC ---
+function toggleAdminDashboard() {
+    document.getElementById('dashboard-view').classList.add('hidden');
+    document.getElementById('lesson-view').classList.add('hidden');
+    document.getElementById('admin-view').classList.remove('hidden');
+}
+
+function resetStudentProgress() {
+    if(confirm("Are you sure you want to purge this student's fault records?")) {
+        appState.failedAttempts = 0;
+        document.getElementById('admin-fail-count').innerText = "0";
+        showToast("Student Evaluation Logs Purged.");
+    }
+}
+
+function publishResource() {
+    const title = document.getElementById('resource-title').value.trim();
+    const url = document.getElementById('resource-url').value.trim();
+    
+    if(!title || !url) {
+        showToast("Missing Data: Provide both an Asset Title and URL.");
+        return;
+    }
+    
+    // Push new resource to state
+    appState.externalResources.push({ title: `🔗 ${title}`, url: url });
+    
+    // Clear inputs
+    document.getElementById('resource-title').value = '';
+    document.getElementById('resource-url').value = '';
+    
+    // Update UI
+    renderResources();
+    showToast("Broadcast Successful: Asset deployed to all active nodes.");
+}
+
+function generateCertificate() {
+    // Prevent default firing if disabled
+    if (appState.completedLessons.size < appState.totalLessons) return;
+    showToast("Processing request... Establishing connection to Certification Registry Database.");
+}
