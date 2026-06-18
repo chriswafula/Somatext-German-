@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somatex Solutions | Deutsch A1</title>
+    <title>Somatex Solutions | Portal</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#047857">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,143 +11,236 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { primaryGreen: '#047857', darkBg: '#121212', darkCard: '#1E1E1E', lightText: '#F3F4F6' }
+                    colors: { primaryGreen: '#029664', darkBg: '#0B0F19', darkCard: '#131B2E', lightText: '#F3F4F6', accentGold: '#F59E0B' }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-darkBg text-lightText font-sans min-h-screen flex flex-col">
+<body class="bg-darkBg text-lightText font-sans min-h-screen flex flex-col selection:bg-primaryGreen selection:text-white">
 
-    <header class="bg-darkCard p-6 border-b border-gray-800">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <header class="bg-darkCard p-5 border-b border-gray-800 shadow-lg sticky top-0 z-40">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div>
-                <h1 class="text-2xl font-bold text-primaryGreen">Somatex Solutions</h1>
-                <p class="text-xs text-gray-400 tracking-widest uppercase">Deutsch A1 Hub</p>
+                <h1 class="text-2xl font-black text-primaryGreen tracking-tight">SOMATEX <span class="text-white font-light">SOLUTIONS</span></h1>
+                <p class="text-xs text-gray-500 tracking-widest uppercase font-semibold">Bridging Education & Technology</p>
             </div>
             <div id="user-controls" class="hidden flex items-center gap-4">
-                <button id="admin-toggle-btn" onclick="toggleAdminDashboard()" class="hidden text-xs bg-amber-600 hover:bg-amber-500 text-white font-bold py-1.5 px-3 rounded-lg transition-colors">
-                    Teacher Mode
+                <button id="admin-toggle-btn" onclick="toggleAdminDashboard()" class="hidden text-xs bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 px-4 rounded-lg transition shadow-md">
+                    ⚙️ Teacher Console
                 </button>
-                <span id="welcome-text" class="text-gray-400 text-sm"></span>
-                <button onclick="handleLogout()" class="text-sm text-red-400 hover:text-red-300 transition">Log Out</button>
+                <button onclick="handleLogout()" class="text-sm bg-gray-800 hover:bg-gray-700 text-red-400 py-2 px-4 rounded-lg border border-gray-700 transition">
+                    Log Out
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-4xl mx-auto p-6 mt-4 w-full box-border">
+    <main class="flex-grow max-w-5xl mx-auto p-4 md:p-8 w-full box-border">
         
-        <section id="auth-view" class="max-w-md mx-auto mt-12 bg-darkCard p-8 rounded-2xl border border-gray-800">
-            <h2 class="text-2xl font-bold text-white mb-2">Student Login</h2>
-            <p class="text-gray-400 mb-6 text-sm">Enter your details to pick up where you left off.</p>
+        <section id="auth-view" class="max-w-lg mx-auto mt-6 bg-darkCard p-8 rounded-2xl border border-gray-800 shadow-2xl">
+            <div class="text-center mb-6">
+                <span class="text-4xl">🌍</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">Student Portal</h2>
+                <p class="text-gray-400 text-sm mt-1">Please fill in your authentic details for certificate profiling.</p>
+            </div>
             
             <form onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
-                    <input type="text" id="auth-name" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Full Name</label>
+                        <input type="text" id="auth-name" required placeholder="John Doe" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Admission Number</label>
+                        <input type="text" id="auth-admission" required placeholder="e.g., 3003" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
+                    </div>
                 </div>
+
                 <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
-                    <input type="email" id="auth-email" required class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-primaryGreen">
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Email Address</label>
+                    <input type="email" id="auth-email" required placeholder="student@somatex.org" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
                 </div>
-                <button type="submit" class="w-full bg-primaryGreen hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
-                    Access Dashboard
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Phone Number (WhatsApp Ready)</label>
+                    <input type="tel" id="auth-phone" required placeholder="e.g., +254..." class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Country</label>
+                        <input type="text" id="auth-country" required placeholder="e.g., Kenya" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Location / Town</label>
+                        <input type="text" id="auth-location" required placeholder="e.g., Nairobi" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-primaryGreen transition">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-primaryGreen hover:bg-emerald-600 text-white font-bold py-3.5 px-4 rounded-lg shadow-lg shadow-emerald-900/30 transition-all font-semibold tracking-wide">
+                    Verify Profile & Enter Academy
                 </button>
             </form>
             
             <div class="mt-6 pt-6 border-t border-gray-800 text-center">
-                <button onclick="loginAsGhost()" class="text-sm text-gray-400 hover:text-white underline transition">
-                    Skip login & continue as Ghost Admin
+                <button onclick="loginAsGhost()" class="text-xs text-gray-500 hover:text-gray-300 underline transition tracking-wide">
+                    ⚠️ Access system bypass as Ghost Admin
                 </button>
             </div>
         </section>
 
-        <section id="dashboard-view" class="hidden space-y-8">
-            <div class="bg-darkCard p-6 rounded-2xl border border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="w-full md:w-2/3">
-                    <h2 class="text-xl font-bold text-white mb-2">Your Learning Progress</h2>
-                    <div class="w-full bg-gray-800 rounded-full h-4 mb-1">
-                        <div id="progress-bar" class="bg-primaryGreen h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+        <section id="dashboard-view" class="hidden space-y-6">
+            
+            <div class="bg-gradient-to-r from-darkCard to-gray-900 p-6 rounded-2xl border border-gray-800 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-primaryGreen/10 border-2 border-primaryGreen flex items-center justify-center text-2xl font-black text-primaryGreen shadow-inner">
+                        DE
                     </div>
-                    <p id="progress-text" class="text-sm text-gray-400">0 of 40 Lessons Completed</p>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 id="student-badge-name" class="text-xl font-extrabold text-white">Student Profile Name</h2>
+                            <span id="student-badge-adm" class="bg-primaryGreen/20 text-primaryGreen border border-primaryGreen/30 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">ADM: 3003</span>
+                        </div>
+                        <p class="text-sm text-gray-400 flex items-center gap-1.5 mt-0.5">
+                            📍 <span id="student-badge-location">Location</span>, <span id="student-badge-country">Country</span> 
+                            <span class="text-gray-600">|</span> 📱 <span id="student-badge-phone">Phone</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="w-full md:w-1/3 text-right">
-                    <button id="cert-btn" onclick="generateCertificate()" disabled class="w-full md:w-auto bg-gray-700 text-gray-400 font-bold py-3 px-4 rounded-lg cursor-not-allowed transition-colors">
-                        Download Certificate
+                
+                <div class="w-full md:w-72 bg-black/30 p-4 rounded-xl border border-gray-800">
+                    <div class="flex justify-between text-xs font-semibold mb-1">
+                        <span class="text-gray-400">Course Milestones</span>
+                        <span id="progress-text" class="text-primaryGreen">0 / 40 Completed</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-2.5 shadow-inner">
+                        <div id="progress-bar" class="bg-primaryGreen h-2.5 rounded-full transition-all duration-500 shadow-md shadow-emerald-500/50" style="width: 0%"></div>
+                    </div>
+                    <button id="cert-btn" onclick="generateCertificate()" disabled class="w-full mt-3 bg-gray-800 text-gray-500 font-bold py-2 px-3 rounded-lg text-xs cursor-not-allowed border border-gray-700 transition">
+                        🎓 Claim Official Certificate
                     </button>
-                    <p id="cert-hint" class="text-xs text-gray-500 mt-2">Complete 40 lessons to unlock</p>
                 </div>
             </div>
 
-            <div>
-                <h3 class="text-lg font-bold text-white mb-4">Curriculum Track</h3>
+            <nav class="flex overflow-x-auto gap-2 border-b border-gray-800 pb-2 no-scrollbar">
+                <button onclick="switchTab('lessons')" id="tab-lessons" class="tab-btn px-5 py-2.5 bg-primaryGreen text-white text-sm font-bold rounded-xl transition whitespace-nowrap flex items-center gap-2">
+                    🇩🇪 German Lessons
+                </button>
+                <button onclick="switchTab('resources')" id="tab-resources" class="tab-btn px-5 py-2.5 bg-gray-900 text-gray-400 hover:text-white text-sm font-medium rounded-xl transition whitespace-nowrap flex items-center gap-2">
+                    📺 Video & Assignments
+                </button>
+                <button onclick="switchTab('culture')" id="tab-culture" class="tab-btn px-5 py-2.5 bg-gray-900 text-gray-400 hover:text-white text-sm font-medium rounded-xl transition whitespace-nowrap flex items-center gap-2">
+                    💡 German Culture Insights
+                </button>
+                <button onclick="switchTab('expansion')" id="tab-expansion" class="tab-btn px-5 py-2.5 bg-gray-900 text-gray-400 hover:text-white text-sm font-medium rounded-xl transition whitespace-nowrap flex items-center gap-2">
+                    🚀 Next Language Tracks
+                </button>
+            </nav>
+
+            <div id="panel-lessons" class="tab-panel space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-white tracking-wide">Curriculum Track (Offline Native Framework)</h3>
+                    <span class="text-xs text-gray-500 font-medium">Click a module card to open contents</span>
+                </div>
                 <div id="module-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
 
-            <div class="mt-8 border-t border-gray-800 pt-8">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    📚 Class Materials & Video Links
-                </h3>
-                <div id="resource-container" class="space-y-3">
-                    <div class="p-4 bg-gray-800/50 rounded-lg border-l-4 border-emerald-600 text-gray-400 text-sm">
-                        📺 No assigned materials listed yet.
+            <div id="panel-resources" class="tab-panel hidden space-y-4">
+                <h3 class="text-lg font-bold text-white tracking-wide">Broadcast Classroom Materials</h3>
+                <p class="text-xs text-gray-400 -mt-2">External video streaming handles data loads gracefully without bloat.</p>
+                <div id="resource-container" class="grid grid-cols-1 gap-3">
+                    <div class="p-5 bg-darkCard rounded-xl border border-gray-800 text-center text-gray-500 text-sm">
+                        No assigned classroom attachments broadcasted yet.
                     </div>
+                </div>
+            </div>
+
+            <div id="panel-culture" class="tab-panel hidden bg-darkCard p-6 rounded-2xl border border-gray-800 space-y-4">
+                <h3 class="text-xl font-bold text-white">More About German Language</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Learning German introduces you to structural logic. Often called the language of writers and thinkers (*Dichter und Denker*), understanding the foundational grammar early makes professional integration seamless.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-black/20 p-4 rounded-xl border border-gray-800 text-sm">
+                        <h4 class="font-bold text-primaryGreen mb-1">Why A1 Level Matters</h4>
+                        <p class="text-gray-400 text-xs leading-relaxed">It is your gateway to standard entry documentation, basic professional contexts, and a vital springboard for scaling advanced integration tiers safely.</p>
+                    </div>
+                    <div class="bg-black/20 p-4 rounded-xl border border-gray-800 text-sm">
+                        <h4 class="font-bold text-accentGold mb-1">Study Advice for Rural Learners</h4>
+                        <p class="text-gray-400 text-xs leading-relaxed">Practice writing structural sentences natively. Try reciting basic phrases offline to improve mental fluency without consuming constant internet bandwidth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-expansion" class="tab-panel hidden bg-darkCard p-8 rounded-2xl border border-gray-800 text-center space-y-4">
+                <span class="text-5xl">🚀</span>
+                <h3 class="text-2xl font-extrabold text-white">Expansion Frameworks</h3>
+                <p class="text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
+                    Our dream is to extend this educational architecture across multiple standard regions. Future versions will scale out support modules for foundational global languages.
+                </p>
+                <div class="flex justify-center gap-3 pt-2 text-xs font-bold text-gray-500">
+                    <span class="bg-gray-900 px-3 py-1.5 rounded-md border border-gray-800">English Language Support</span>
+                    <span class="bg-gray-900 px-3 py-1.5 rounded-md border border-gray-800">Kiswahili Support Track</span>
                 </div>
             </div>
         </section>
 
         <section id="lesson-view" class="hidden space-y-6">
-            <button onclick="showDashboard()" class="text-gray-400 hover:text-white flex items-center text-sm transition">
-                ← Back to Dashboard
+            <button onclick="showDashboard()" class="text-gray-400 hover:text-white flex items-center text-sm transition tracking-wide font-medium">
+                ← Back to Portal Dashboard Menu
             </button>
             
-            <div class="bg-darkCard p-8 rounded-2xl border border-gray-800">
-                <h2 id="lesson-title" class="text-3xl font-bold text-white mb-6"></h2>
-                
-                <div id="lesson-content" class="prose prose-invert max-w-none text-gray-300 space-y-6"></div>
+            <div class="bg-darkCard p-6 md:p-8 rounded-2xl border border-gray-800 shadow-xl">
+                <h2 id="lesson-title" class="text-3xl font-black text-white mb-6"></h2>
+                <div id="lesson-content" class="prose prose-invert max-w-none text-gray-300 space-y-4 text-sm leading-relaxed"></div>
 
-                <div class="mt-10 pt-6 border-t border-gray-700">
-                    <button id="start-quiz-btn" class="w-full md:w-auto bg-primaryGreen hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg transition">
-                        Take Assessment (Requires 80% to Pass)
+                <div class="mt-10 pt-6 border-t border-gray-800">
+                    <button id="start-quiz-btn" class="w-full md:w-auto bg-primaryGreen hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition">
+                        Launch Targeted Assessment Module (80% Minimum Threshold)
                     </button>
                 </div>
             </div>
         </section>
 
-        <section id="admin-view" class="hidden space-y-8">
-            <div class="bg-darkCard p-8 rounded-2xl border border-amber-600 border-t-4 shadow-xl">
-                <h2 class="text-2xl font-bold text-white mb-1">Teacher Dashboard</h2>
-                <p class="text-gray-400 text-sm mb-6">Monitor student progress and publish external study resources globally.</p>
+        <section id="admin-view" class="hidden space-y-6">
+            <div class="bg-darkCard p-6 md:p-8 rounded-2xl border border-amber-600 border-t-4 shadow-2xl">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-white">Teacher Admin Executive Console</h2>
+                    <p class="text-gray-400 text-sm">Review real-time evaluation matrices and safely distribute link attachments.</p>
+                </div>
                 
-                <div class="bg-gray-900/50 p-5 rounded-xl border border-gray-800 mb-8">
-                    <h3 class="text-white font-bold text-sm tracking-wide uppercase mb-3 text-amber-500">Student Progress Logs</h3>
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-3">
+                <div class="bg-black/40 p-5 rounded-xl border border-gray-800 mb-6">
+                    <h3 class="text-white font-black text-xs tracking-wider uppercase mb-3 text-amber-500">Active Identity Session Log</h3>
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-800 pb-3 gap-3">
                         <div>
-                            <span class="text-gray-200 block font-medium" id="admin-student-name">Active Session Student</span>
-                            <span class="text-xs text-gray-500" id="admin-student-email">Email tracking active</span>
+                            <span class="text-gray-200 block font-bold" id="admin-student-name">No active student profile logged yet</span>
+                            <span class="text-xs text-gray-500" id="admin-student-email">Awaiting session login identification credentials</span>
                         </div>
-                        <div class="text-right">
-                            <span class="text-red-400 text-sm font-bold block">Failed Attempts: <span id="admin-fail-count">0</span></span>
+                        <div class="sm:text-right">
+                            <span class="text-red-400 text-sm font-black block">Logged Mistakes / Failed Attempts: <span id="admin-fail-count">0</span></span>
                         </div>
                     </div>
-                    <button onclick="resetStudentProgress()" class="text-xs bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-900/60 py-1.5 px-3 rounded-md transition">
-                        Erase Student Progress Log
+                    <button onclick="resetStudentProgress()" class="text-xs bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-900/40 font-bold mt-3 py-2 px-4 rounded-lg transition">
+                        Erase Current Student Progress Log File
                     </button>
                 </div>
 
-                <div>
-                    <h3 class="text-white font-bold text-sm tracking-wide uppercase mb-3 text-emerald-500">Distribute New Assignment / Video</h3>
+                <div class="bg-black/20 p-5 rounded-xl border border-gray-800">
+                    <h3 class="text-white font-black text-xs tracking-wider uppercase mb-3 text-emerald-500">Distribute New Video / Task Resource Link</h3>
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">Resource / Video Title</label>
-                            <input type="text" id="resource-title" placeholder="e.g., Lesson 1 Video - German Alphabet Basics" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1">Resource Header / Video Title</label>
+                                <input type="text" id="resource-title" placeholder="e.g., Lesson 1 Video - Alphabet Basics" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1">External Streaming Link URL</label>
+                                <input type="url" id="resource-url" placeholder="https://youtube.com/watch?v=..." class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">External Streaming/Access URL</label>
-                            <input type="url" id="resource-url" placeholder="https://youtube.com/watch?v=..." class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-amber-500">
-                        </div>
-                        <button onclick="publishResource()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 px-5 rounded-lg transition text-sm shadow-md">
-                            Publish Resource Link
+                        <button onclick="publishResource()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 px-6 rounded-lg transition text-sm shadow-md">
+                            Broadcast Resource Link Globally
                         </button>
                     </div>
                 </div>
@@ -156,36 +249,61 @@
 
     </main>
 
-    <div id="assessment-modal" class="hidden fixed inset-0 bg-black/95 overflow-y-auto p-4 z-50">
-        <div class="bg-darkCard p-6 md:p-8 rounded-2xl border border-gray-700 max-w-2xl w-full mx-auto my-8">
+    <div id="assessment-modal" class="hidden fixed inset-0 bg-black/95 overflow-y-auto p-4 z-50 flex items-center justify-center">
+        <div class="bg-darkCard p-6 md:p-8 rounded-2xl border border-gray-800 max-w-2xl w-full mx-auto my-auto shadow-2xl">
             <div class="flex justify-between items-center mb-6">
-                <h3 id="assessment-title" class="text-2xl font-bold text-white">Assessment</h3>
-                <span class="bg-yellow-500/20 text-yellow-500 text-xs font-bold px-3 py-1 rounded-full">10 Questions</span>
+                <h3 id="assessment-title" class="text-2xl font-bold text-white">Module Assessment Verification</h3>
+                <span class="bg-amber-500/10 text-accentGold text-xs font-black px-3 py-1 rounded-full border border-amber-500/20">10 Targeted Inquiries</span>
             </div>
             
-            <p class="text-gray-400 mb-6 text-sm border-b border-gray-800 pb-4">
-                You must score at least <strong>8 out of 10</strong> to unlock the next module.
+            <p class="text-gray-400 mb-6 text-xs border-b border-gray-800 pb-4 leading-relaxed">
+                Security metrics are locked. Achieving an evaluation factor of at least <strong class="text-white">80% (8 out of 10 correct)</strong> is strictly required to unlock forward pathways.
             </p>
             
-            <div id="quiz-container" class="space-y-8 mb-8"></div>
+            <div id="quiz-container" class="space-y-6 mb-8 max-h-[50vh] overflow-y-auto pr-2 no-scrollbar"></div>
             
-            <div class="flex flex-col space-y-3 mt-8">
-                <button onclick="submitAssessment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-4 rounded-lg transition text-lg">
-                    Submit Answers & Grade
+            <div class="flex flex-col space-y-2 mt-6 border-t border-gray-800 pt-4">
+                <button onclick="submitAssessment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg text-sm uppercase tracking-wider">
+                    Lock Answers & Run Assessment Matrix
                 </button>
-                <button onclick="closeAssessment()" class="w-full bg-transparent border border-gray-600 hover:border-gray-400 text-gray-300 font-bold py-3 px-4 rounded-lg transition">
-                    Cancel & Return to Lesson
+                <button onclick="closeAssessment()" class="w-full bg-transparent border border-gray-700 hover:border-gray-600 text-gray-400 font-medium py-2.5 px-4 rounded-xl transition text-xs">
+                    Cancel & Abort Active Assessment
                 </button>
             </div>
         </div>
     </div>
 
     <footer class="bg-darkCard border-t border-gray-800 py-6 mt-auto">
-        <div class="max-w-4xl mx-auto text-center">
-            <p class="text-gray-500 text-sm">© 2026 Somatex Solutions | Educational Hub</p>
+        <div class="max-w-5xl mx-auto text-center px-4">
+            <p class="text-gray-500 text-xs font-medium tracking-wide">© 2026 Somatex Solutions. Empowering Remote and Rural Education Platforms Safely.</p>
         </div>
     </footer>
 
     <script src="./app.js"></script>
+
+    <script>
+        function switchTab(tabId) {
+            // Select all panels and buttons
+            const panels = document.querySelectorAll('.tab-panel');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            // Hide all tab views safely
+            panels.forEach(p => p.classList.add('hidden'));
+            
+            // Revert all buttons to inactive gray states
+            buttons.forEach(b => {
+                b.classList.remove('bg-primaryGreen', 'text-white', 'font-bold');
+                b.classList.add('bg-gray-900', 'text-gray-400', 'font-medium');
+            });
+            
+            // Make the targeted selection view panel alive
+            document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+            
+            // Update targeted active navigation button accent colors
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.remove('bg-gray-900', 'text-gray-400', 'font-medium');
+            activeBtn.classList.add('bg-primaryGreen', 'text-white', 'font-bold');
+        }
+    </script>
 </body>
 </html>
