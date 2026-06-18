@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SomaText Education Hub | Portal</title>
+    <title>Somatex Edu Hub | Portal</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#070D19">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,37 +18,56 @@
                         cboOrange: '#F39C12', 
                         cboBlue: '#2471A3', 
                         cboGreen: '#27AE60',
-                        cboRed: '#C0392B'
+                        cboRed: '#C0392B',
+                        deGold: '#FFCC00'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom scrollbar for clean, premium interfaces */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #070D19; }
         ::-webkit-scrollbar-thumb { background: #0E1A30; border-radius: 10px; border: 1px solid #F39C12; }
-        .cultural-border {
-            background-image: repeating-linear-gradient(45deg, #F39C12 0px, #F39C12 10px, #070D19 10px, #070D19 20px, #27AE60 20px, #27AE60 30px, #2471A3 30px, #2471A3 40px);
+        
+        /* Blended Cultural Border: Kenya (Black/Red/White/Green) + Germany (Black/Red/Gold) + Local Textures */
+        .global-cultural-band {
+            background: linear-gradient(90deg, 
+                #000000 0%, #000000 10%, #FFFFFF 10%, #FFFFFF 11%, #BC0000 11%, #BC0000 20%, #FFFFFF 20%, #FFFFFF 21%, #006600 21%, #006600 35%, /* Kenya */
+                #F39C12 35%, #2471A3 45%, #27AE60 55%, /* Local CBO Accents */
+                #000000 55%, #000000 65%, #FF0000 65%, #FF0000 75%, #FFCC00 75%, #FFCC00 85%, /* Germany */
+                #006600 85%, #BC0000 93%, #000000 100%
+            );
+            background-size: 200% auto;
+            animation: delicateWave 20s linear infinite;
+        }
+        @keyframes delicateWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
 <body class="bg-hubBg text-hubText font-sans min-h-screen flex flex-col selection:bg-cboOrange selection:text-white">
 
-    <div class="h-2 w-full cultural-border"></div>
+    <div class="h-2.5 w-full global-cultural-band shadow-md"></div>
 
-    <header class="bg-hubCard/80 backdrop-blur-md p-5 border-b border-gray-800 sticky top-0 z-40 shadow-xl">
+    <header class="bg-hubCard/90 backdrop-blur-md p-5 border-b border-gray-800/60 sticky top-0 z-40 shadow-xl">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full border-2 border-cboOrange flex items-center justify-center relative animate-pulse">
-                    <div class="w-7 h-7 rounded-full border-2 border-cboGreen flex items-center justify-center absolute">
-                        <div class="w-4 h-4 rounded-full bg-cboBlue"></div>
-                    </div>
-                </div>
+            <div class="flex items-center gap-3.5">
+                <svg class="w-11 h-11 text-white" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 4" class="text-cboBlue"/>
+                    <circle cx="50" cy="50" r="38" stroke="currentColor" stroke-width="2" class="text-gray-700"/>
+                    <path d="M50 4L50 16M50 84L50 96M4 50L16 50M84 50L96 50" stroke="#F39C12" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M18 18L26 26M74 74L82 82M82 18L74 26M26 74L18 82" stroke="#27AE60" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="16" fill="#070D19" stroke="#2471A3" stroke-width="3"/>
+                    <text x="50" y="54" fill="#ECF0F1" font-size="11" font-weight="900" text-anchor="middle" font-family="sans-serif">hub</text>
+                </svg>
                 <div>
-                    <h1 class="text-xl font-black text-white tracking-wider">SOMATEXT <span class="text-cboOrange font-normal">EDUCATION HUB</span></h1>
-                    <p class="text-[10px] text-gray-400 tracking-widest uppercase font-semibold">Bridging Technology & Rural Classrooms</p>
+                    <h1 class="text-xl font-black text-white tracking-wider flex items-center gap-1.5">
+                        SOMATEXT <span class="text-cboOrange font-medium">EDU HUB</span>
+                    </h1>
+                    <p class="text-[10px] text-gray-400 tracking-widest uppercase font-bold">Bridging Technology &amp; Rural Classrooms</p>
                 </div>
             </div>
             <div id="user-controls" class="hidden flex items-center gap-4">
@@ -66,30 +85,30 @@
         
         <section id="auth-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto">
             
-            <div class="lg:col-span-6 space-y-6 hidden lg:block relative p-8 bg-hubCard rounded-3xl border border-gray-800 shadow-2xl overflow-hidden">
-                <div class="absolute -top-10 -left-10 w-40 h-40 bg-cboOrange/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-cboBlue/10 rounded-full blur-3xl"></div>
+            <div class="lg:col-span-6 space-y-6 hidden lg:block relative p-8 bg-hubCard rounded-3xl border border-gray-800/80 shadow-2xl overflow-hidden">
+                <div class="absolute -top-10 -left-10 w-40 h-40 bg-cboOrange/5 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-cboBlue/5 rounded-full blur-3xl"></div>
                 
-                <div class="w-full h-80 bg-gradient-to-br from-gray-900 to-hubBg rounded-2xl border border-gray-800 flex flex-col items-center justify-center p-6 text-center relative group">
-                    <div class="w-24 h-32 bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg shadow-2xl border-l-8 border-cboOrange flex flex-col justify-between p-3 transform -rotate-6 group-hover:rotate-0 transition-all duration-500">
-                        <span class="text-xs font-black tracking-widest text-white">DEUTSCH</span>
-                        <div class="h-1 w-full bg-white/30 rounded"></div>
+                <div class="w-full h-80 bg-gradient-to-br from-gray-900 to-hubBg rounded-2xl border border-gray-800/60 flex flex-col items-center justify-center p-6 text-center relative group">
+                    <div class="w-24 h-32 bg-gradient-to-r from-cboBlue to-indigo-950 rounded-lg shadow-2xl border-l-8 border-cboOrange flex flex-col justify-between p-3 transform -rotate-3 group-hover:rotate-0 transition-all duration-500">
+                        <span class="text-[10px] font-black tracking-widest text-white">DEUTSCH</span>
+                        <div class="h-0.5 w-full bg-white/20 rounded"></div>
                         <span class="text-right text-lg">🇩🇪</span>
                     </div>
                     
-                    <div class="absolute bottom-4 left-4 bg-hubCard/90 border border-gray-700 rounded-lg p-2.5 flex items-center gap-2 text-left shadow-lg">
+                    <div class="absolute bottom-4 left-4 bg-hubCard/95 border border-gray-700 rounded-xl p-3 flex items-center gap-2.5 text-left shadow-lg">
                         <span class="text-xl">📶</span>
                         <div>
-                            <p class="text-[10px] font-bold text-cboGreen uppercase tracking-wider">Sync Active</p>
-                            <p class="text-[9px] text-gray-400">Offline Framework Native</p>
+                            <p class="text-[10px] font-black text-cboGreen uppercase tracking-wider">Local Nodes Active</p>
+                            <p class="text-[9px] text-gray-400">Low-Footprint Framework</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-left">
-                    <h3 class="text-2xl font-black text-white">Deutsch A1 Progression Track</h3>
+                    <h3 class="text-2xl font-black text-white">Multi-Subject Adaptive Track</h3>
                     <p class="text-sm text-gray-400 leading-relaxed mt-2">
-                        Welcome to a decentralized learning model crafted to optimize academic performance in rural and community centers without constant internet overheads.
+                        Deploying curated knowledge matrices across languages, sciences, and technical disciplines without demanding continuous high-speed data overheads.
                     </p>
                 </div>
             </div>
@@ -97,17 +116,17 @@
             <div class="lg:col-span-6 bg-hubCard p-6 md:p-8 rounded-3xl border border-gray-800 shadow-2xl relative">
                 <div class="flex bg-black/40 p-1.5 rounded-xl border border-gray-800 mb-6">
                     <button onclick="toggleAuthMode('signin')" id="btn-tab-signin" class="w-1/2 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-cboBlue to-indigo-900 rounded-lg transition-all shadow-md">
-                        Existing Student Sign In
+                        Student Sign In
                     </button>
                     <button onclick="toggleAuthMode('signup')" id="btn-tab-signup" class="w-1/2 py-2.5 text-sm font-medium text-gray-400 hover:text-white rounded-lg transition-all">
-                        Create Account (Sign Up)
+                        Request Account
                     </button>
                 </div>
 
                 <form id="form-signin" onsubmit="handleLogin(event)" class="space-y-4">
                     <div>
-                        <h3 class="text-xl font-black text-white">Access Classroom Portal</h3>
-                        <p class="text-xs text-gray-400 mt-1">Enter your credential markers to load offline cache data tracks.</p>
+                        <h3 class="text-xl font-black text-white">Access Portal</h3>
+                        <p class="text-xs text-gray-400 mt-1">Provide your verified registry values to download active session states.</p>
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">WhatsApp Phone Number</label>
@@ -124,8 +143,8 @@
 
                 <form id="form-signup" onsubmit="handleSignUpEntry(event)" class="space-y-4 hidden">
                     <div>
-                        <h3 class="text-xl font-black text-white">Submit Profiling Registry</h3>
-                        <p class="text-xs text-gray-400 mt-1">Fields mapped directly onto downstream verification certificate modules.</p>
+                        <h3 class="text-xl font-black text-white">Submit Profile Request</h3>
+                        <p class="text-xs text-gray-400 mt-1">Data maps explicitly onto internal tracking and eventual validation certificates.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
@@ -133,7 +152,7 @@
                             <input type="text" id="auth-name" placeholder="John Doe" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Admission Intended</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Intended ADM</label>
                             <input type="text" id="auth-admission" placeholder="e.g., 3003" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange transition">
                         </div>
                     </div>
@@ -155,11 +174,11 @@
                             <input type="text" id="auth-location" placeholder="e.g., Nairobi" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange transition">
                         </div>
                     </div>
-                    <div class="p-3 bg-cboOrange/10 rounded-xl border border-cboOrange/30 text-[11px] text-cboOrange leading-relaxed">
-                        ⚠️ **Security Protocol:** To lock out malicious traffic, newly registered profiles remain locked under a "Pending" node in Firebase until manually approved by the Admin inside the dashboard database.
+                    <div class="p-3 bg-cboOrange/10 rounded-xl border border-cboOrange/20 text-[11px] text-cboOrange leading-relaxed">
+                        ⚠️ **Security Protocol:** Newly compiled registrations stay in a restricted state inside the Firebase architecture until manually cleared by your High School Educator/Admin.
                     </div>
                     <button type="submit" class="w-full bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 px-4 rounded-xl shadow-xl transition-all tracking-wide text-xs uppercase">
-                        Request Account Approval Code
+                        Request Account Approval
                     </button>
                 </form>
 
@@ -173,10 +192,10 @@
 
         <section id="dashboard-view" class="hidden space-y-6">
             
-            <div class="bg-gradient-to-br from-hubCard to-gray-900 p-6 rounded-3xl border border-gray-800 shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
-                <div class="absolute -right-20 -bottom-20 w-48 h-48 border-4 border-gray-800/20 rounded-full"></div>
+            <div class="bg-gradient-to-br from-hubCard to-gray-900 p-6 rounded-3xl border border-gray-800/80 shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-48 h-48 border-4 border-gray-800/10 rounded-full"></div>
                 <div class="flex items-center gap-4 z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cboBlue to-cboOrange flex items-center justify-center text-xl font-black text-white shadow-lg">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cboBlue via-cboGreen to-cboOrange flex items-center justify-center text-xl font-black text-white shadow-lg">
                         A1
                     </div>
                     <div>
@@ -193,14 +212,14 @@
                 
                 <div class="w-full md:w-72 bg-black/40 p-4 rounded-2xl border border-gray-800 z-10">
                     <div class="flex justify-between text-[11px] font-bold tracking-wide uppercase mb-1.5">
-                        <span class="text-gray-400">Course Matrix Milepost</span>
+                        <span class="text-gray-400">German Progress Milestone</span>
                         <span id="progress-text" class="text-cboOrange">0 / 40 Completed</span>
                     </div>
                     <div class="w-full bg-gray-900 rounded-full h-2 shadow-inner">
                         <div id="progress-bar" class="bg-gradient-to-r from-cboBlue via-cboGreen to-cboOrange h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
                     </div>
                     <button id="cert-btn" onclick="generateCertificate()" disabled class="w-full mt-3 bg-gray-800 text-gray-500 font-bold py-2 px-3 rounded-xl text-xs cursor-not-allowed border border-gray-700 transition tracking-wider uppercase text-[10px]">
-                        🎓 Generate Certified Performance Document
+                        🎓 Generate Performance Evaluation Document
                     </button>
                 </div>
             </div>
@@ -208,12 +227,12 @@
             <div class="space-y-3">
                 
                 <div class="bg-hubCard rounded-2xl border border-gray-800 overflow-hidden shadow-lg">
-                    <button onclick="toggleTile('tile-curriculum')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/40 hover:to-gray-900 transition text-left border-b border-gray-800/30">
-                        <div class="flex items-center gap-3">
+                    <button onclick="toggleTile('tile-curriculum')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/20 hover:to-gray-900 transition text-left border-b border-gray-800/30">
+                        <div class="flex items-center gap-3.5">
                             <span class="text-xl">🇩🇪</span>
                             <div>
-                                <h3 class="text-base font-black text-white">German Curricular Lesson Track</h3>
-                                <p class="text-[11px] text-gray-400">Core 40 Native Academic Syllabus Modules</p>
+                                <h3 class="text-base font-black text-white">German Language Tracking Syllabus</h3>
+                                <p class="text-[11px] text-gray-400">Core 40 Native Competency Validation Tracks</p>
                             </div>
                         </div>
                         <span id="arrow-tile-curriculum" class="text-gray-500 font-bold transform transition-transform duration-300 rotate-180">▼</span>
@@ -225,12 +244,12 @@
                 </div>
 
                 <div class="bg-hubCard rounded-2xl border border-gray-800 overflow-hidden shadow-lg">
-                    <button onclick="toggleTile('tile-resources')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/40 hover:to-gray-900 transition text-left border-b border-gray-800/30">
-                        <div class="flex items-center gap-3">
+                    <button onclick="toggleTile('tile-resources')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/20 hover:to-gray-900 transition text-left border-b border-gray-800/30">
+                        <div class="flex items-center gap-3.5">
                             <span class="text-xl">📺</span>
                             <div>
-                                <h3 class="text-base font-black text-white">Video Broadcasting & External Tasks</h3>
-                                <p class="text-[11px] text-gray-400">Classroom reference materials distributed by the teacher</p>
+                                <h3 class="text-base font-black text-white">Broadcast Media Repositories</h3>
+                                <p class="text-[11px] text-gray-400">Syllabus external references and study directives</p>
                             </div>
                         </div>
                         <span id="arrow-tile-resources" class="text-gray-500 font-bold transform transition-transform duration-300">▼</span>
@@ -242,52 +261,36 @@
                 </div>
 
                 <div class="bg-hubCard rounded-2xl border border-gray-800 overflow-hidden shadow-lg">
-                    <button onclick="toggleTile('tile-culture')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/40 hover:to-gray-900 transition text-left border-b border-gray-800/30">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xl">💡</span>
-                            <div>
-                                <h3 class="text-base font-black text-white">More About German Language</h3>
-                                <p class="text-[11px] text-gray-400">Cultural dignity foundations and local integration keys</p>
-                            </div>
-                        </div>
-                        <span id="arrow-tile-culture" class="text-gray-500 font-bold transform transition-transform duration-300">▼</span>
-                    </button>
-                    <div id="body-tile-culture" class="p-6 bg-black/20 hidden space-y-4">
-                        <p class="text-xs text-gray-300 leading-relaxed">
-                            Learning German establishes structured syntactic logic. Famously referenced as the language of authors and structural visionaries (*Dichter und Denker*), isolating conversational building block parameters early locks down secure integration success pathways down the line.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                            <div class="bg-hubBg p-4 rounded-xl border border-gray-800 text-xs">
-                                <h4 class="font-bold text-cboBlue mb-1">Strategic Significance of A1 Literacy</h4>
-                                <p class="text-gray-400 text-[11px] leading-relaxed">Acts as the standard diagnostic parameter for visas, family tracking protocols, and basic workplace processing pipelines globally.</p>
-                            </div>
-                            <div class="bg-hubBg p-4 rounded-xl border border-gray-800 text-xs">
-                                <h4 class="font-bold text-cboOrange mb-1">Bandwidth Asset Strategy</h4>
-                                <p class="text-gray-400 text-[11px] leading-relaxed">Students are encouraged to drill pronunciation metrics aloud locally to protect cellular data bandwidth limits until evaluation nodes call for live sync pulses.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-hubCard rounded-2xl border border-gray-800 overflow-hidden shadow-lg">
-                    <button onclick="toggleTile('tile-future')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/40 hover:to-gray-900 transition text-left border-b border-gray-800/30">
-                        <div class="flex items-center gap-3">
+                    <button onclick="toggleTile('tile-expansion')" class="w-full p-5 flex justify-between items-center bg-gradient-to-r from-hubCard to-gray-900/20 hover:to-gray-900 transition text-left border-b border-gray-800/30">
+                        <div class="flex items-center gap-3.5">
                             <span class="text-xl">🚀</span>
                             <div>
-                                <h3 class="text-base font-black text-white">Future Language Tracks Expansion</h3>
-                                <p class="text-[11px] text-gray-400">Scale mapping structures for extended regional language tracks</p>
+                                <h3 class="text-base font-black text-white">Extended Multi-Discipline Classrooms</h3>
+                                <p class="text-[11px] text-gray-400">Scale mappings for future technical, literary, and science categories</p>
                             </div>
                         </div>
-                        <span id="arrow-tile-future" class="text-gray-500 font-bold transform transition-transform duration-300">▼</span>
+                        <span id="arrow-tile-expansion" class="text-gray-500 font-bold transform transition-transform duration-300">▼</span>
                     </button>
-                    <div id="body-tile-future" class="p-6 bg-black/20 hidden text-center space-y-4">
-                        <h4 class="text-lg font-bold text-white">Decolonized Multi-Track Target Metrics</h4>
-                        <p class="text-xs text-gray-400 max-w-lg mx-auto leading-relaxed">
-                            The ultimate design goal of the SomaText core framework expands learning matrices out to include advanced structural tracks for regional integration modules globally.
+                    <div id="body-tile-expansion" class="p-6 bg-black/20 hidden space-y-4">
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            The framework is custom-engineered to adapt across multiple core subject verticals. As learning metrics progress, students will be able to toggle into science, digital literacy, and extended language ecosystems using this same localized interface footprint.
                         </p>
-                        <div class="flex flex-wrap justify-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                            <span class="bg-hubBg px-3 py-2 rounded-lg border border-gray-800">English Fluency Tiers</span>
-                            <span class="bg-hubBg px-3 py-2 rounded-lg border border-gray-800">Kiswahili Standard Tracking</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                            <div class="bg-hubBg/80 p-4 rounded-xl border border-gray-800 opacity-60">
+                                <span class="text-lg block mb-1">📐</span>
+                                <h4 class="font-bold text-white text-xs uppercase tracking-wider">Sciences &amp; Math</h4>
+                                <p class="text-[10px] text-gray-400 mt-1">Advanced logic blocks and formula tracking architectures.</p>
+                            </div>
+                            <div class="bg-hubBg/80 p-4 rounded-xl border border-gray-800 opacity-60">
+                                <span class="text-lg block mb-1">💻</span>
+                                <h4 class="font-bold text-white text-xs uppercase tracking-wider">Digital Technology</h4>
+                                <p class="text-[10px] text-gray-400 mt-1">MERN/Flutter development fundamentals and logic pathways.</p>
+                            </div>
+                            <div class="bg-hubBg/80 p-4 rounded-xl border border-gray-800 opacity-60">
+                                <span class="text-lg block mb-1">🌍</span>
+                                <h4 class="font-bold text-white text-xs uppercase tracking-wider">Extended Languages</h4>
+                                <p class="text-[10px] text-gray-400 mt-1">Decolonized literacy options encompassing regional and global blocks.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -296,28 +299,30 @@
 
             <div class="mt-8 bg-gradient-to-r from-hubCard via-gray-950 to-hubCard p-6 rounded-3xl border border-gray-800 shadow-xl flex flex-col sm:flex-row items-center gap-6 justify-between">
                 <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full bg-white p-2 flex items-center justify-center border-4 border-dashed border-cboOrange shadow-inner">
-                        <div class="grid grid-cols-2 gap-0.5 w-full h-full rounded-full overflow-hidden p-1">
+                    <div class="p-2.5 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center w-20 h-20 min-w-[80px]">
+                        <div class="grid grid-cols-2 gap-0.5 w-7 h-7 rounded-full overflow-hidden mb-1">
                             <div class="bg-cboOrange"></div><div class="bg-cboBlue"></div>
                             <div class="bg-cboGreen"></div><div class="bg-cboRed"></div>
                         </div>
+                        <span class="text-[7px] text-cboBlue font-black tracking-tighter uppercase text-center leading-none">Mitua Massive</span>
+                        <span class="text-[5px] text-cboOrange font-bold tracking-widest uppercase text-center mt-0.5 leading-none">Family-CBO</span>
                     </div>
                     <div>
                         <h4 class="text-base font-black text-white">Mitua Massive Family-CBO</h4>
-                        <p class="text-xs text-cboOrange tracking-wider font-bold">Official Implementation Partner Organization</p>
-                        <p class="text-[11px] text-gray-500 mt-0.5">Sustaining youth initiatives, socio-cultural reforms, and digital literacy tracks.</p>
+                        <p class="text-xs text-cboOrange tracking-wider font-bold">Strategic Institutional Co-Branding Program Partner</p>
+                        <p class="text-[11px] text-gray-500 mt-0.5">Sustaining community-based youth empowerment metrics, capacity building, and digital literacy tracks.</p>
                     </div>
                 </div>
-                <div class="text-right sm:border-l sm:border-gray-800 sm:pl-6">
-                    <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase block mb-1">CEO Full Print Ledger</span>
-                    <span class="bg-black/40 text-gray-300 border border-gray-800 rounded-md py-1.5 px-3 text-xs inline-block font-mono font-medium">MMF-CBO Strategic Blueprint</span>
+                <div class="text-right sm:border-l sm:border-gray-800 sm:pl-6 w-full sm:w-auto">
+                    <span class="text-[10px] font-bold text-gray-400 tracking-widest uppercase block mb-1">Executive Directives Ledger</span>
+                    <span class="bg-black/50 text-gray-300 border border-gray-800 rounded-lg py-2 px-3.5 text-xs inline-block font-mono font-medium">CEO Full Print Document Verified</span>
                 </div>
             </div>
         </section>
 
         <section id="lesson-view" class="hidden space-y-6">
             <button onclick="showDashboard()" class="text-gray-400 hover:text-white flex items-center text-xs transition tracking-wider font-bold uppercase gap-1">
-                ← Return to Portal Accordion Menu
+                ← Return to Portal Disciplinary Accordions
             </button>
             
             <div class="bg-hubCard p-6 md:p-8 rounded-3xl border border-gray-800 shadow-2xl relative">
@@ -326,7 +331,7 @@
 
                 <div class="mt-10 pt-6 border-t border-gray-800">
                     <button id="start-quiz-btn" class="w-full md:w-auto bg-gradient-to-r from-cboGreen to-emerald-700 hover:from-emerald-500 hover:to-emerald-800 text-white font-bold py-3.5 px-8 rounded-xl shadow-xl transition-all text-xs uppercase tracking-widest">
-                        Launch Security Locked Diagnostic Evaluation (80% Pass Gate)
+                        Launch Security Interlocked Evaluation Profile
                     </button>
                 </div>
             </div>
@@ -336,35 +341,35 @@
             <div class="bg-hubCard p-6 md:p-8 rounded-3xl border-t-4 border-cboOrange shadow-2xl">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-white">Teacher Admin Dashboard Console</h2>
-                    <p class="text-xs text-gray-400">Audit session metrics, manage Firebase activation matrices, and distribute attachments.</p>
+                    <p class="text-xs text-gray-400">Review student evaluation metrics, adjust active profile records, and broadcast supplementary links.</p>
                 </div>
                 
                 <div class="bg-black/40 p-5 rounded-2xl border border-gray-800 mb-6">
-                    <h3 class="text-cboOrange font-black text-xs tracking-widest uppercase mb-3">Live Active Profile Trace</h3>
+                    <h3 class="text-cboOrange font-black text-xs tracking-widest uppercase mb-3">Live Active Trace Evaluation Profile</h3>
                     <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-gray-800 pb-3 gap-3">
                         <div>
-                            <span class="text-gray-200 block font-bold text-sm" id="admin-student-name">Awaiting Active Student Registration</span>
-                            <span class="text-xs text-gray-500 font-mono" id="admin-student-email">No active validation footprint</span>
+                            <span class="text-gray-200 block font-bold text-sm" id="admin-student-name">Awaiting Active Registration Connection</span>
+                            <span class="text-xs text-gray-500 font-mono" id="admin-student-email">No footprint logged</span>
                         </div>
                         <div class="sm:text-right">
-                            <span class="text-cboRed text-xs font-black block tracking-wider uppercase">Logged Evaluation Faults: <span id="admin-fail-count" class="text-sm font-sans ml-1">0</span></span>
+                            <span class="text-cboRed text-xs font-black block tracking-wider uppercase">Logged Fault Flags: <span id="admin-fail-count" class="text-sm font-sans ml-1">0</span></span>
                         </div>
                     </div>
                     <button onclick="resetStudentProgress()" class="text-[11px] bg-cboRed/10 hover:bg-cboRed/30 text-red-400 border border-cboRed/20 font-bold mt-3 py-2 px-4 rounded-xl transition uppercase tracking-wider">
-                        Purge Active Progress Database Files
+                        Purge Session Evaluation Logs
                     </button>
                 </div>
 
                 <div class="bg-black/20 p-5 rounded-2xl border border-gray-800">
-                    <h3 class="text-cboGreen font-black text-xs tracking-widest uppercase mb-3">Broadcast New Link Asset / Video Material</h3>
+                    <h3 class="text-cboGreen font-black text-xs tracking-widest uppercase mb-3">Broadcast Asset Link Across Hub Nodes</h3>
                     <div class="space-y-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-gray-400 mb-1">Resource Header / Video Title</label>
-                                <input type="text" id="resource-title" placeholder="e.g., Lesson 1 Video - Greetings" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange">
+                                <label class="block text-xs font-bold text-gray-400 mb-1">Asset Header / Title</label>
+                                <input type="text" id="resource-title" placeholder="e.g., Module 1 Video Link" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-gray-400 mb-1">External Target Web Destination (URL)</label>
+                                <label class="block text-xs font-bold text-gray-400 mb-1">External Destination Address (URL)</label>
                                 <input type="url" id="resource-url" placeholder="https://youtube.com/watch?v=..." class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-xs focus:outline-none focus:border-cboOrange">
                             </div>
                         </div>
@@ -381,22 +386,22 @@
     <div id="assessment-modal" class="hidden fixed inset-0 bg-black/95 overflow-y-auto p-4 z-50 items-center justify-center backdrop-blur-sm">
         <div class="bg-hubCard p-6 md:p-8 rounded-3xl border border-gray-800 max-w-2xl w-full mx-auto my-auto shadow-2xl relative">
             <div class="flex justify-between items-center mb-6">
-                <h3 id="assessment-title" class="text-xl font-black text-white">Diagnostic Verification Processing</h3>
-                <span class="bg-cboOrange/10 text-cboOrange text-[10px] font-black px-2.5 py-1 rounded-md border border-cboOrange/20 uppercase tracking-widest">Manual Key Entry</span>
+                <h3 id="assessment-title" class="text-xl font-black text-white">Diagnostic Verification Unit</h3>
+                <span class="bg-cboOrange/10 text-cboOrange text-[10px] font-black px-2.5 py-1 rounded-md border border-cboOrange/20 uppercase tracking-widest">Manual Entry Key</span>
             </div>
             
             <p class="text-gray-400 mb-6 text-xs border-b border-gray-800 pb-4 leading-relaxed">
-                Security Interlocks Active. Achieving an evaluation ratio score of at least <strong class="text-white">80% (8/10 accuracy alignment)</strong> is required to clear advancing locks.
+                Security metrics active. Passing requires matching alphanumeric keys configured inside the database verification arrays.
             </p>
             
             <div id="quiz-container" class="space-y-6 mb-8 max-h-[45vh] overflow-y-auto pr-1"></div>
             
             <div class="flex flex-col space-y-2 mt-6 border-t border-gray-800 pt-4">
                 <button onclick="submitAssessment()" class="w-full bg-gradient-to-r from-cboGreen to-emerald-700 hover:from-emerald-500 hover:to-emerald-800 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg text-xs uppercase tracking-widest">
-                    Lock Response & Run Evaluation Script
+                    Submit Response String
                 </button>
                 <button onclick="closeAssessment()" class="w-full bg-transparent border border-gray-800 hover:border-gray-700 text-gray-500 font-bold py-2.5 px-4 rounded-xl transition text-[10px] uppercase tracking-wider">
-                    Abort Active Verification Sequence
+                    Abort Evaluation Sequence
                 </button>
             </div>
         </div>
@@ -404,14 +409,13 @@
 
     <footer class="bg-hubCard border-t border-gray-800 py-6 mt-auto">
         <div class="max-w-6xl mx-auto text-center px-4">
-            <p class="text-gray-500 text-[11px] tracking-wide">© 2026 SomaText Solutions. Partnered with Mitua Massive Family-CBO. Built to bridge education and structural local technologies safely.</p>
+            <p class="text-gray-500 text-[11px] tracking-wide">© 2026 Somatex Edu Hub. Run in implementation alliance with Mitua Massive Family-CBO. Optimized for scalable multi-disciplinary learning distributions.</p>
         </div>
     </footer>
 
     <script src="./app.js"></script>
 
     <script>
-        // Form Toggle Handler (Sign In / Sign Up Selector)
         function toggleAuthMode(mode) {
             const btnSignIn = document.getElementById('btn-tab-signin');
             const btnSignUp = document.getElementById('btn-tab-signup');
@@ -431,7 +435,6 @@
             }
         }
 
-        // Dropdown Tile Accordion Toggler
         function toggleTile(tileId) {
             const body = document.getElementById(`body-${tileId}`);
             const arrow = document.getElementById(`arrow-${tileId}`);
@@ -445,12 +448,8 @@
             }
         }
 
-        // Form interception alert for Sign Up pending flow confirmation
         function handleSignUpEntry(e) {
             e.preventDefault();
-            alert("Registration Submitted Successfully!\nYour credentials have been routed to the pending nodes. Please ask your Mitua Massive Administrator or high school teacher to clear your account access activation code inside the database console before attempting to log in.");
+            alert("Registry Data Dispatched to Database!\nYour profile submission is logged in a pending status. Please contact your administrator or High School educator to clear your registration and issue your account validation credentials.");
             toggleAuthMode('signin');
         }
-    </script>
-</body>
-</html>
