@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somatex Edu Hub | Portal</title>
+    <title>Somatext Edu Hub | Premium Language Portal</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#070D19">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -71,7 +71,7 @@
                     <h1 class="text-xl font-black text-white tracking-wider flex items-center gap-1.5">
                         SOMATEXT <span class="text-cboOrange font-medium">EDU HUB</span>
                     </h1>
-                    <p class="text-[10px] text-gray-400 tracking-widest uppercase font-bold">Bridging Technology &amp; Rural Classrooms</p>
+                    <p class="text-[10px] text-gray-400 tracking-widest uppercase font-bold">Bridging Technology &amp; Classrooms</p>
                 </div>
             </div>
             <div id="user-controls" class="hidden items-center gap-4">
@@ -175,7 +175,7 @@
                         </div>
                     </div>
                     <div class="p-3 bg-cboOrange/10 rounded-xl border border-cboOrange/20 text-[11px] text-cboOrange leading-relaxed" role="alert">
-                        ⚠️ **Security Protocol:** Newly compiled registrations stay in a restricted state inside the database architecture until manually cleared by your High School Educator/Admin.
+                    **wait for approval:** Newly compiled registrations stay in a restricted state inside the database architecture until manually cleared by your High School Educator/Admin.
                     </div>
                     <button type="submit" class="w-full bg-gradient-to-r from-cboOrange to-amber-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 px-4 rounded-xl shadow-xl transition-all tracking-wide text-xs uppercase cursor-pointer">
                         Request Account Approval
@@ -203,7 +203,7 @@
                     <div>
                         <span class="text-[10px] font-black uppercase tracking-widest text-blue-400 bg-blue-500/10 px-2 py-1 rounded-md">Curriculum Meter</span>
                         <h3 class="text-lg font-bold text-white mt-4">German A1 Track Milestone Metrics</h3>
-                        <p id="progress-text" class="text-xs text-gray-400 mt-1">0 / 40 Completed</p>
+                        <p id="progress-text" class="text-xs text-gray-400 mt-1">0 / 4 completed</p>
                         <div class="w-full bg-gray-950 rounded-full h-2.5 mt-4 border border-gray-800 overflow-hidden">
                             <div id="progress-bar" class="bg-cboGreen h-full w-0 transition-all duration-500"></div>
                         </div>
@@ -226,14 +226,35 @@
             </div>
         </section>
 
-        <section id="lesson-view" class="hidden max-w-2xl mx-auto bg-hubCard border border-gray-800 rounded-2xl p-8 text-left shadow-2xl my-6 w-full">
-            <button onclick="showDashboard()" class="text-xs font-bold text-cboGreen hover:text-emerald-300 transition mb-4 block cursor-pointer">← Back to Dashboard Hub</button>
-            <h2 id="lesson-title" class="text-2xl font-black text-white tracking-tight">---</h2>
-            <div class="border-t border-gray-800 my-4"></div>
-            <div id="lesson-content" class="min-h-[150px]">
+        <section id="lesson-view" class="hidden w-full max-w-4xl mx-auto my-6 transition-all duration-300 animate-fadeIn">
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="showDashboard()" class="flex items-center gap-2 px-4 py-2 text-xs font-black uppercase tracking-wider text-cboGreen bg-emerald-500/10 rounded-xl hover:bg-emerald-500/20 transition cursor-pointer">
+                    ← Back to Course Dashboard
+                </button>
+                <span id="lesson-module-badge" class="text-[10px] font-black uppercase tracking-widest text-cboOrange bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">---</span>
+            </div>
+
+            <div class="bg-hubCard border border-gray-800/80 rounded-3xl shadow-2xl overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-gray-800/60 bg-gradient-to-r from-gray-900/60 to-transparent">
+                    <h2 id="lesson-title" class="text-2xl md:text-3xl font-black text-white tracking-tight">---</h2>
+                    <p class="text-xs text-gray-400 mt-2 flex items-center gap-1.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-cboGreen"></span> Integrated Immersive Material
+                    </p>
                 </div>
-            <div class="border-t border-gray-800 my-6"></div>
-            <button id="start-quiz-btn" class="bg-cboGreen hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl text-xs transition uppercase tracking-wider shadow-md cursor-pointer">Launch Verification Evaluation</button>
+
+                <div id="lesson-extended-content" class="p-6 md:p-8 space-y-8 text-left">
+                    </div>
+
+                <div class="p-6 bg-black/40 border-t border-gray-800/60 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="text-left">
+                        <p class="text-xs font-bold text-white">Ready to verify your understanding?</p>
+                        <p class="text-[11px] text-gray-400 mt-0.5">Submit the validation token key response below to unlock the subsequent module track.</p>
+                    </div>
+                    <button id="start-quiz-btn" class="w-full sm:w-auto bg-gradient-to-r from-cboGreen to-emerald-600 hover:from-emerald-500 hover:to-green-500 text-white font-black py-3.5 px-8 rounded-xl text-xs transition uppercase tracking-wider shadow-lg cursor-pointer">
+                        Launch Verification Evaluation
+                    </button>
+                </div>
+            </div>
         </section>
 
         <section id="admin-view" class="hidden space-y-8 my-6 text-left w-full">
@@ -305,56 +326,108 @@
             currentUser: null,
             failedAttempts: 0,
             completedLessons: new Set(),
-            totalLessons: 40,
+            totalLessons: 4, // Adjusted tracking scale for core demonstrative architecture
             externalResources: [
                 { title: "📺 Welcome Video: Kickstart Your German A1 Journey", url: "https://youtube.com/watch?v=example1" },
-                { title: "📝 Mitua Massive CBO Partnership Overview & Syllabus", url: "https://docs.google.com/document/d/example" }
+                { title: "📝 Partnership Overview & Core Syllabus Matrix Document", url: "https://docs.google.com/document/d/example" }
             ],
             activeLesson: null
         };
 
-        // --- 2. THE CHOSEN 40-LESSON GERMAN A1 SYLLABUS TRACK DATASET ---
+        // --- 2. DEEP-DIVE INTUITIVE COMPACT CURRICULUM ARCHITECTURE ---
         const sampleLessons = [
-            { id: 1, title: "Lesson 1: Das Alphabet & Pronunciation", module: "Module 1: Foundations", content: "Welcome! In German, 'W' sounds like 'V', 'V' sounds like 'F', and 'J' sounds like 'Y'. 'Ä', 'Ö', and 'Ü' are umlauts. 'ß' is a double 's'.", question: "Which English letter does the German 'W' sound like?", answer: "v" },
-            { id: 2, title: "Lesson 2: Begrüßungen (Greetings)", module: "Module 1: Foundations", content: "Greet people based on time: 'Guten Morgen' (Morning), 'Guten Tag' (Day), 'Guten Abend' (Evening). 'Hallo' is casual, 'Tschüss' is casual goodbye.", question: "Translate into German: 'Good morning'", answer: "guten morgen" },
-            { id: 3, title: "Lesson 3: Sich vorstellen (Introductions)", module: "Module 1: Foundations", content: "To say your name: 'Ich heiße...' or 'Mein Name ist...'. To ask formally: 'Wie heißen Sie?'. Informally: 'Wie heißt du?'.", question: "Translate: 'My name is'", answer: "mein name ist" },
-            { id: 4, title: "Lesson 4: Woher kommst du? (Origins)", module: "Module 1: Foundations", content: "To say where you are from, use 'Ich komme aus...' (I come from...). For example: 'Ich komme aus Kenia' or 'Ich komme aus Deutschland'.", question: "Translate: 'I come from'", answer: "ich komme aus" },
-            { id: 5, title: "Lesson 5: Zahlen 1-20 (Numbers)", module: "Module 1: Foundations", content: "1 to 10: eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn. 11: elf, 12: zwölf. Master these for daily transactions.", question: "What is the German word for the number 5?", answer: "fünf" },
-            { id: 6, title: "Lesson 6: Die Artikel (Der, Die, Das)", module: "Module 2: Basic Grammar", content: "German has 3 genders for 'the': 'der' (masculine), 'die' (feminine/plural), 'das' (neuter). Always learn nouns with their articles!", question: "Which article is used for feminine nouns?", answer: "die" },
-            { id: 7, title: "Lesson 7: Personalpronomen (Pronouns)", module: "Module 2: Basic Grammar", content: "Ich (I), du (you singular informal), er (he), sie (she/they), es (it), wir (we), ihr (you plural informal), Sie (you formal).", question: "What is the formal word for 'you' in German?", answer: "sie" },
-            { id: 8, title: "Lesson 8: The Verb 'sein' (to be)", module: "Module 2: Basic Grammar", content: "'Sein' is irregular. Ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind. Example: 'Ich bin Student' (I am a student).", question: "Translate: 'I am'", answer: "ich bin" },
-            { id: 9, title: "Lesson 9: The Verb 'haben' (to have)", module: "Module 2: Basic Grammar", content: "'Haben' is crucial. Ich habe, du hast, er/sie/es hat, wir haben, ihr habt, sie/Sie haben. Example: 'Ich habe Zeit' (I have time).", question: "Translate: 'He has'", answer: "er hat" },
-            { id: 10, title: "Lesson 10: Die Familie (Family)", module: "Module 2: Basic Grammar", content: "Der Vater (father), die Mutter (mother), der Bruder (brother), die Schwester (sister). Use 'mein' (my masculine/neuter) and 'meine' (my feminine/plural).", question: "Translate: 'The mother'", answer: "die mutter" },
-            { id: 11, title: "Lesson 11: Wochentage (Days of the Week)", module: "Module 3: Daily Life", content: "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag. Use 'am' before days: 'am Montag' (on Monday).", question: "What is the German word for Friday?", answer: "freitag" },
-            { id: 12, title: "Lesson 12: Monate & Jahreszeiten (Months & Seasons)", module: "Module 3: Daily Life", content: "Seasons: der Sommer, der Winter, der Herbst, der Frühling. Use 'im' before months and seasons: 'im Sommer' (in summer).", question: "Translate: 'In summer'", answer: "im sommer" },
-            { id: 13, title: "Lesson 13: Die Uhrzeit (Telling Time)", module: "Module 3: Daily Life", content: "Ask 'Wie spät ist es?' (What time is it?). Answer: 'Es ist...'. 'Viertel nach' is quarter past, 'halb' is half to the next hour.", question: "Translate: 'What time is it?' (Leave out punctuation)", answer: "wie spät ist es" },
-            { id: 14, title: "Lesson 14: Essen und Trinken (Food & Drink)", module: "Module 3: Daily Life", content: "Das Wasser (water), das Brot (bread), der Apfel (apple), der Kaffee (coffee). 'Ich esse' (I eat), 'Ich trinke' (I drink).", question: "Translate: 'The water'", answer: "das wasser" },
-            { id: 15, title: "Lesson 15: Im Café (Ordering in a Cafe)", module: "Module 3: Daily Life", content: "To order politely, say 'Ich hätte gern...' (I would like to have...) or 'Ich möchte...' (I would like...). 'Bitte' means please/you're welcome.", question: "Translate: 'I would like'", answer: "ich möchte" },
-            { id: 16, title: "Lesson 16: The Accusative Case (Direct Objects)", module: "Module 4: Accusative Case", content: "The Accusative case is for direct objects. Only masculine articles change! 'der' becomes 'den', 'ein' becomes 'einen'. Die and Das stay the same.", question: "In the accusative case, 'der' changes to what?", answer: "den" },
-            { id: 17, title: "Lesson 17: Orte in der Stadt (Places in the City)", module: "Module 4: Accusative Case", content: "Der Bahnhof (train station), die Post (post office), das Krankenhaus (hospital). 'Ich suche den Bahnhof' (I am looking for the train station).", question: "Translate: 'The hospital'", answer: "das krankenhaus" },
-            { id: 18, title: "Lesson 18: Verkehrsmittel (Transportation)", module: "Module 4: Accusative Case", content: "Der Bus, der Zug (train), das Auto (car), das Fahrrad (bicycle). To say you travel by something, use 'mit dem' (e.g., mit dem Bus).", question: "Translate: 'The train'", answer: "der zug" },
-            { id: 19, title: "Lesson 19: Negation (Nicht vs. Kein)", module: "Module 4: Accusative Case", content: "Use 'kein' to negate a noun with an indefinite article (Ich habe kein Auto). Use 'nicht' to negate verbs or adjectives (Das ist nicht gut).", question: "Which word do you use to negate a noun with an indefinite article?", answer: "kein" },
-            { id: 20, title: "Lesson 20: Fragewörter (Question Words)", module: "Module 4: Accusative Case", content: "Wer (Who), Was (What), Wo (Where), Wann (When), Warum (Why), Wie (How). Example: 'Wo ist der Bahnhof?'", question: "Translate the question word: 'Where'", answer: "wo" },
-            { id: 21, title: "Lesson 21: Berufe (Professions)", module: "Module 5: Work & Abilities", content: "To state your job: 'Ich bin Arzt von Beruf' (I am a doctor by profession). Note: Female professions usually end in '-in' (die Ärztin).", question: "What suffix is usually added for a female profession?", answer: "in" },
-            { id: 22, title: "Lesson 22: Modal Verb: Können (Can/Ability)", module: "Module 5: Work & Abilities", content: "'Können' expresses ability. Ich kann, du kannst, er kann. The second verb goes to the very END of the sentence in its infinitive form.", question: "Translate: 'I can'", answer: "ich kann" },
-            { id: 23, title: "Lesson 23: Modal Verb: Müssen (Must/Necessity)", module: "Module 5: Work & Abilities", content: "'Müssen' means must. Ich muss, du musst, er muss. 'Ich muss heute arbeiten' (I must work today).", question: "Translate: 'I must'", answer: "ich must" },
-            { id: 24, title: "Lesson 24: Modal Verb: Wollen (Want to)", module: "Module 5: Work & Abilities", content: "'Wollen' expresses a strong desire or plan. Ich will, du willst, er will. 'Ich will Deutsch lernen' (I want to learn German).", question: "Translate: 'I want'", answer: "ich will" },
-            { id: 25, title: "Lesson 25: Der Imperativ (Commands)", module: "Module 5: Work & Abilities", content: "Commands are used for instructions. Formal: 'Kommen Sie!' (Come!). Informal singular: 'Komm!' (Come!). Let's go: 'Gehen wir!'", question: "Translate into an informal singular command: 'Come!'", answer: "komm" },
-            { id: 26, title: "Lesson 26: Der Körper (Body Parts)", module: "Module 6: Health & Dative", content: "Der Kopf (head), der Arm (arm), das Bein (leg), der Bauch (stomach). 'Mein Kopf tut weh' means 'My head hurts'.", question: "Translate: 'The head'", answer: "der kopf" },
-            { id: 27, title: "Lesson 27: Beim Arzt (At the Doctor)", module: "Module 6: Health & Dative", content: "To express illness: 'Ich bin krank' (I am sick). The doctor might ask 'Was fehlt Ihnen?' (What is wrong with you?).", question: "Translate: 'I am sick'", answer: "ich bin krank" },
-            { id: 28, title: "Lesson 28: Intro to Dative Case (Indirect Objects)", module: "Module 6: Health & Dative", content: "Dative indicates the receiver. Articles change drastically: der->dem, das->dem, die->der, die(plural)->den. 'Ich helfe dem Mann' (I help the man).", question: "In the Dative case, 'der' changes to what?", answer: "dem" },
-            { id: 29, title: "Lesson 29: Prepositions with Dative", module: "Module 6: Health & Dative", content: "Some prepositions ALWAYS take Dative: aus, bei, mit, nach, seit, von, zu. Example: 'Ich fahre mit dem Bus' (I travel with the bus).", question: "Which case always follows the preposition 'mit'?", answer: "dative" },
-            { id: 30, title: "Lesson 30: Kleidung (Clothing)", module: "Module 6: Health & Dative", content: "Die Hose (pants), das Hemd (shirt), die Jacke (jacket). 'Ich trage eine Jacke' (I am wearing a jacket).", question: "Translate: 'The jacket'", answer: "die jacke" },
-            { id: 31, title: "Lesson 31: Das Haus (The House)", module: "Module 7: Living Spaces", content: "Das Wohnzimmer (living room), die Küche (kitchen), das Schlafzimmer (bedroom), das Bad (bathroom).", question: "Translate: 'The kitchen'", answer: "die küche" },
-            { id: 32, title: "Lesson 32: Möbel (Furniture)", module: "Module 7: Living Spaces", content: "Der Tisch (table), der Stuhl (chair), das Bett (bed), der Schrank (closet).", question: "Translate: 'The bed'", answer: "das bett" },
-            { id: 33, title: "Lesson 33: Trennbare Verben (Separable Verbs)", module: "Module 7: Living Spaces", content: "Some verbs split. 'aufstehen' (to wake up). In a standard sentence, the prefix goes to the end: 'Ich stehe um 7 Uhr auf'.", question: "Where does the separable prefix go in a standard sentence?", answer: "end" },
-            { id: 34, title: "Lesson 34: Freizeit & Hobbys (Free Time)", module: "Module 7: Living Spaces", content: "Lesen (to read), spielen (to play), schwimmen (to swim). 'Was machst du in deiner Freizeit?' (What do you do in your free time?).", question: "Translate: 'To read'", answer: "lesen" },
-            { id: 35, title: "Lesson 35: Einkaufen (Shopping)", module: "Module 7: Living Spaces", content: "Teuer (expensive), billig (cheap). 'Wie viel kostet das?' (How much does that cost?).", question: "Translate: 'Expensive'", answer: "teuer" },
-            { id: 36, title: "Lesson 36: Das Perfekt (Past Tense with Haben)", module: "Module 8: Past Tense", content: "Conversational past tense mostly uses 'haben' + a participle (ge-). 'Ich habe gespielt' (I played), 'Ich habe gemacht' (I did/made).", question: "What prefix is commonly used for past participles in German?", answer: "ge" },
-            { id: 37, title: "Lesson 37: Das Perfekt (Past Tense with Sein)", module: "Module 8: Past Tense", content: "Verbs involving movement from A to B (gehen, fahren) use 'sein' instead of haben. 'Ich bin gegangen' (I went).", question: "Does the verb 'gehen' (to go) use 'haben' or 'sein' in the past tense?", answer: "sein" },
-            { id: 38, title: "Lesson 38: Briefe schreiben (Writing Letters/Emails)", module: "Module 8: Past Tense", content: "Formal start: 'Sehr geehrte(r)...'. Informal start: 'Liebe(r)...'. Formal end: 'Mit freundlichen Grüßen'.", question: "Translate the formal sign-off: 'Mit freundlichen Grüßen'", answer: "with kind regards" },
-            { id: 39, title: "Lesson 39: Speaking Exam Prep", module: "Module 8: Past Tense", content: "In the A1 speaking exam, you must introduce yourself: Name, Alter (age), Land (country), Wohnort (living place), Sprachen (languages), Beruf (profession).", question: "Translate: 'Age'", answer: "alter" },
-            { id: 40, title: "Lesson 40: Final A1 Certification Validation", module: "Module 8: Past Tense", content: "Congratulations! You have covered the A1 structures. Validate your final milestone to unlock the Mitua Massive CBO Certificate generation.", question: "Type 'zertifikat' to complete your A1 level track.", answer: "zertifikat" }
+            { 
+                id: 1, 
+                title: "Lesson 1: Begrüßungen (Greetings & Fundamentals)", 
+                module: "Module 1: Foundations", 
+                summary: "Master essential greeting vectors, formal vs informal registers, and structural cross-cultural dialogue scripts.",
+                grammar: "In German, capitalizations are strict: all nouns must be capitalized regardless of sentence placing. Pronunciation follows uniform tracking elements: 'W' takes an English phonetic 'V' sound, whereas 'V' switches to sound like 'F'.",
+                vocabulary: [
+                    { de: "Guten Morgen", en: "Good morning (Used until 11:00 AM)" },
+                    { de: "Guten Tag", en: "Good day / afternoon (Standard greeting)" },
+                    { de: "Guten Abend", en: "Good evening (Used after dark/sunset)" },
+                    { de: "Hallo", en: "Hello / Hi (Casual relational register)" },
+                    { de: "Auf Wiedersehen", en: "Goodbye (Formal expression)" },
+                    { de: "Tschüss", en: "Bye / See ya (Casual relational goodbye)" }
+                ],
+                dialogue: [
+                    { speaker: "Herr Müller (Formal)", text: "Guten Tag! Wie heißen Sie?", translation: "Good day! What is your name? (Formal registry)" },
+                    { speaker: "Lukas (Formal Response)", text: "Guten Tag, Herr Müller. Ich heiße Lukas. Und Ihnen?", translation: "Good day, Mr. Müller. I am named Lukas. And you? (Formal metric)" },
+                    { speaker: "Herr Müller (Formal)", text: "Ich heiße Sebastian Müller. Auf Wiedersehen, Lukas.", translation: "I am named Sebastian Müller. Goodbye, Lukas." },
+                    { speaker: "Lukas (Casual Cut)", text: "Auf Wiedersehen! Tschüss!", translation: "Goodbye! Bye!" }
+                ],
+                question: "Translate the formal greeting: 'Good morning'", 
+                answer: "guten morgen" 
+            },
+            { 
+                id: 2, 
+                title: "Lesson 2: Sich vorstellen (Personal Identity & Introductions)", 
+                module: "Module 1: Foundations", 
+                summary: "Express personal identifier properties including name construction, geographical origin, and local node residences.",
+                grammar: "When inquiring about properties, verb positions alter. In standard structural declarations, the conjugated verb occupies Position 2. In basic closed yes/no interrogatives, it flips cleanly to Position 1.",
+                vocabulary: [
+                    { de: "Ich heiße...", en: "I am named / called..." },
+                    { de: "Mein Name ist...", en: "My name is..." },
+                    { de: "Wie heißt du?", en: "What is your name? (Informal registry)" },
+                    { de: "Woher kommst du?", en: "Where do you come from? (Informal)" },
+                    { de: "Ich komme aus...", en: "I come from... (Indicates birth origin)" },
+                    { de: "Wer bist du?", en: "Who are you?" }
+                ],
+                dialogue: [
+                    { speaker: "Sarah (Casual Open)", text: "Hallo! Ich bin Sarah. Wie heißt du?", translation: "Hello! I am Sarah. What is your name? (Informal)" },
+                    { speaker: "John (Casual Response)", text: "Hallo Sarah. Mein Name ist John. Woher kommst du?", translation: "Hello Sarah. My name is John. Where do you come from?" },
+                    { speaker: "Sarah", text: "Ich komme aus Deutschland. Und du?", translation: "I come from Germany. And you?" },
+                    { speaker: "John", text: "Ich komme aus Kenia. Es freut mich, dich kennenzulernen!", translation: "I come from Kenya. It pleases me to meet you!" }
+                ],
+                question: "Translate the expression: 'My name is'", 
+                answer: "mein name ist" 
+            },
+            { 
+                id: 3, 
+                title: "Lesson 3: Die Uhrzeit & Zeitformen (Telling Time Contextually)", 
+                module: "Module 2: Daily Matrix", 
+                summary: "Navigate absolute time frameworks, casual clock phrasing, and scheduling markers.",
+                grammar: "German separates official time (24-hour schedules used at airports/broadcasting) from casual time (12-hour conversational scale). Conversational layouts use 'halb' to indicate half-past, but uniquely look forward to the subsequent hour (e.g., 'halb drei' means 2:30, literally half-way to three).",
+                vocabulary: [
+                    { de: "Wie spät ist es?", en: "What time is it? (Lit: How late is it?)" },
+                    { de: "Es ist zwei Uhr", en: "It is two o'clock precisely" },
+                    { de: "Viertel nach...", en: "Quarter past... (Position tracking)" },
+                    { de: "Viertel vor...", en: "Quarter to... (Position tracking)" },
+                    { de: "Halb...", en: "Half-way to the subsequent hour token" },
+                    { de: "Um wie viel Uhr?", en: "At what time exactly?" }
+                ],
+                dialogue: [
+                    { speaker: "Anna", text: "Entschuldigung, wie spät ist es jetzt?", translation: "Excuse me, what time is it now?" },
+                    { speaker: "Ben", text: "Es ist jetzt genau halb vier. Warum fragst du?", translation: "It is now exactly half past three (3:30). Why do you ask?" },
+                    { speaker: "Anna", text: "Oh! Um viertel vor vier beginnt mein Deutschkurs online.", translation: "Oh! At quarter to four (3:45) my German course begins online." },
+                    { speaker: "Ben", text: "Keine Sorge, du hast noch fünfzehn Minuten Zeit!", translation: "No worries, you still have fifteen minutes of time!" }
+                ],
+                question: "Translate the prompt text: 'What time is it?' (Omit punctuation metrics)", 
+                answer: "wie spät ist es" 
+            },
+            { 
+                id: 4, 
+                title: "Lesson 4: Im Restaurant (Ordering & Interactive Transactions)", 
+                module: "Module 2: Daily Matrix", 
+                summary: "Polite imperative structures, transactional requests, and restaurant communication logic.",
+                grammar: "The conditional structural token 'möchte' (would like) functions as a modal connector. It pushes any primary interactive secondary action (like 'trinken' or 'essen') to the final sentence slot in its full raw infinitive structural state.",
+                vocabulary: [
+                    { de: "Ich möchte...", en: "I would like... (Polite transactional demand)" },
+                    { de: "Ich hätte gern...", en: "I would gladly have..." },
+                    { de: "Die Speisekarte, bitte", en: "The menu card, please" },
+                    { de: "Das Brot", en: "The bread structural noun" },
+                    { de: "Das Wasser", en: "The water element" },
+                    { de: "Zahlen, bitte!", en: "The bill, please! / Let me pay!" }
+                ],
+                dialogue: [
+                    { speaker: "Kellner (Waiter)", text: "Guten Abend! Was möchten Sie trinken?", translation: "Good evening! What would you like to drink? (Formal tracking)" },
+                    { speaker: "Gast (Guest)", text: "Ich hätte gern ein Mineralwasser, bitte. Und die Speisekarte.", translation: "I would gladly have a mineral water, please. And the menu card." },
+                    { speaker: "Kellner", text: "Bitte schön. Möchten Sie auch etwas essen?", translation: "Here you go. Would you like to eat something as well?" },
+                    { speaker: "Gast", text: "Ja, ich nehme das Brot mit Suppe. Vielen Dank!", translation: "Yes, I will take the bread with soup. Thank you very much!" }
+                ],
+                question: "Translate the primary item token: 'The water'", 
+                answer: "das wasser" 
+            }
         ];
 
         // --- 3. TOAST GENERATOR UTILITY ---
@@ -375,7 +448,7 @@
 
         // --- 4. SECURE REFRESHLESS AUTHENTICATION FLOWS ---
         function handleLogin(event) {
-            event.preventDefault(); // STOPS Page refreshing!
+            event.preventDefault(); // Staves off component state wipeouts
             
             const phone = document.getElementById('signin-phone').value.trim();
             const admCode = document.getElementById('signin-admission').value.trim();
@@ -384,12 +457,11 @@
                 name: admCode === "ADMIN-001" ? "System Administrator Node" : "Verified Student Track",
                 admission: admCode,
                 phone: phone,
-                location: "Mitua Massive Hub",
+                location: "SomaText Training Node",
                 country: "Kenya",
-                email: "authenticated@somatex.org"
+                email: "authenticated@somatext.org"
             };
 
-            // Switch view states cleanly
             if (admCode === "ADMIN-001") {
                 appState.isTeacher = true;
                 document.getElementById('admin-toggle-btn').classList.remove('hidden');
@@ -454,14 +526,12 @@
             document.getElementById('user-controls').classList.add('flex');
             document.getElementById('user-controls').classList.remove('hidden');
 
-            // Set Up Student Badge values
             document.getElementById('student-badge-name').innerText = appState.currentUser.name;
             document.getElementById('student-badge-adm').innerText = `ADM ID: ${appState.currentUser.admission}`;
             document.getElementById('student-badge-location').innerText = appState.currentUser.location;
             document.getElementById('student-badge-country').innerText = appState.currentUser.country;
             document.getElementById('student-badge-phone').innerText = appState.currentUser.phone;
 
-            // Set Up Admin Screen fields simultaneously
             document.getElementById('admin-student-name').innerText = appState.currentUser.name;
             document.getElementById('admin-student-email').innerText = `${appState.currentUser.email} | Adm: ${appState.currentUser.admission}`;
             document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
@@ -471,7 +541,7 @@
             updateProgressMeter();
         }
 
-        // --- 6. GRID LAYOUT BUILDERS ---
+        // --- 6. GRID BUILDER METHODS ---
         function renderCurriculum() {
             const container = document.getElementById('module-container');
             container.innerHTML = "";
@@ -480,25 +550,35 @@
                 const isLocked = lesson.id > 1 && !appState.completedLessons.has(lesson.id - 1);
                 
                 const card = document.createElement('div');
-                card.className = `p-5 rounded-2xl border transition-all text-left ${
+                card.className = `p-6 rounded-2xl border transition-all text-left flex flex-col justify-between h-full ${
                     isLocked 
                     ? 'bg-gray-900/30 border-gray-800/80 opacity-40 cursor-not-allowed' 
-                    : 'bg-hubCard border-gray-800 hover:border-cboGreen cursor-pointer shadow-md'
+                    : 'bg-hubCard border-gray-800/80 hover:border-cboGreen cursor-pointer shadow-xl transform hover:-translate-y-0.5 duration-200'
                 }`;
                 
                 if (!isLocked) {
                     card.onclick = () => openLesson(lesson.id);
                 }
 
-                const status = appState.completedLessons.has(lesson.id) ? "✅ Done" : isLocked ? "🔒 Locked" : "📖 Open";
+                const badgeColor = appState.completedLessons.has(lesson.id) 
+                    ? 'bg-emerald-500/10 text-cboGreen border border-emerald-500/20' 
+                    : isLocked ? 'bg-gray-800/40 text-gray-500 border border-gray-800' : 'bg-blue-500/10 text-cboBlue border border-blue-500/20';
+                
+                const statusText = appState.completedLessons.has(lesson.id) ? "✓ Complete" : isLocked ? "🔒 Locked" : "📖 Open Material";
 
                 card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <span class="text-[10px] font-black uppercase tracking-wider text-cboOrange">${lesson.module}</span>
-                        <span class="text-xs px-2 py-0.5 rounded bg-black/40 text-gray-300 font-bold">${status}</span>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[9px] font-black uppercase tracking-widest text-cboOrange bg-amber-500/5 px-2 py-1 rounded border border-amber-500/10">${lesson.module}</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${badgeColor}">${statusText}</span>
+                        </div>
+                        <h4 class="text-white font-black text-base tracking-tight leading-snug">${lesson.title}</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">${lesson.summary}</p>
                     </div>
-                    <h4 class="text-white font-bold mt-2 text-base">${lesson.title}</h4>
-                    <p class="text-xs text-gray-400 mt-1 line-clamp-1">Click to view lesson materials and run diagnostic validation testing.</p>
+                    <div class="pt-4 border-t border-gray-800/60 mt-4 flex justify-between items-center text-[11px] font-bold text-cboGreen">
+                        <span>${isLocked ? 'Unlock prior tracks' : 'Begin Deep-Dive Study'}</span>
+                        <span>→</span>
+                    </div>
                 `;
                 container.appendChild(card);
             });
@@ -515,8 +595,8 @@
                 link.className = "block p-4 bg-gray-900 hover:bg-gray-800/60 rounded-xl border-l-4 border-cboBlue transition text-gray-200 text-xs font-semibold shadow-sm mb-2";
                 link.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <span>${res.title}</span>
-                        <span class="text-cboBlue text-[10px]">Open ↗</span>
+                        <span class="line-clamp-1">${res.title}</span>
+                        <span class="text-cboBlue text-[10px] shrink-0 ml-2">Open ↗</span>
                     </div>
                 `;
                 container.appendChild(link);
@@ -536,128 +616,3 @@
                 certBtn.className = "w-full mt-4 bg-cboGreen hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition uppercase tracking-wider cursor-pointer shadow-md";
             } else {
                 certBtn.disabled = true;
-                certBtn.className = "w-full mt-4 bg-gray-800 text-gray-500 font-bold py-2.5 px-4 rounded-xl text-xs cursor-not-allowed border border-gray-700 transition uppercase tracking-wider";
-            }
-        }
-
-        // --- 7. DYNAMIC LESSON HANDLERS ---
-        function openLesson(lessonId) {
-            const lesson = sampleLessons.find(l => l.id === lessonId);
-            if (!lesson) return;
-            
-            appState.activeLesson = lesson;
-            
-            document.getElementById('dashboard-view').classList.add('hidden');
-            document.getElementById('admin-view').classList.add('hidden');
-            document.getElementById('lesson-view').classList.remove('hidden');
-            
-            document.getElementById('lesson-title').innerText = lesson.title;
-            document.getElementById('lesson-content').innerHTML = `
-                <p class="text-gray-300 text-sm leading-relaxed">${lesson.content}</p>
-                <div class="p-4 bg-black/30 rounded-xl border border-gray-800 mt-6 text-xs">
-                    <span class="text-cboOrange font-bold block mb-1">💡 Study Guidance Note:</span>
-                    To keep internet access costs and bandwidth footprints extremely low for rural setups, verify streaming assets listed under the "Broadcast Media Repositories" portal sidebar whenever connected.
-                </div>
-            `;
-            
-            document.getElementById('start-quiz-btn').onclick = () => openAssessmentModal(lesson);
-        }
-
-        function showDashboard() {
-            document.getElementById('lesson-view').classList.add('hidden');
-            document.getElementById('admin-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-            initializeDashboard();
-        }
-
-        // --- 8. EVALUATION MODAL CONTROLLERS ---
-        function openAssessmentModal(lesson) {
-            const modal = document.getElementById('assessment-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            document.getElementById('assessment-title').innerText = `Diagnostic: Lesson ${lesson.id}`;
-            
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = `
-                <div class="space-y-2 text-left">
-                    <label class="block text-sm font-bold text-white mb-3">${lesson.question}</label>
-                    <input type="text" id="assessment-answer" placeholder="Type answer in lowercase..." autocomplete="off" class="w-full bg-hubBg border border-gray-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-cboOrange transition">
-                </div>
-            `;
-            
-            setTimeout(() => {
-                const inputField = document.getElementById('assessment-answer');
-                if(inputField) inputField.focus();
-            }, 100);
-        }
-
-        function closeAssessment() {
-            const modal = document.getElementById('assessment-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            appState.activeLesson = null;
-        }
-
-        function submitAssessment() {
-            const inputField = document.getElementById('assessment-answer');
-            const answerInput = inputField.value.trim().toLowerCase();
-            const correctAnswer = appState.activeLesson.answer.toLowerCase();
-
-            if (answerInput === correctAnswer) {
-                appState.completedLessons.add(appState.activeLesson.id);
-                showToast(`Success! Lesson ${appState.activeLesson.id} validation clear.`);
-                closeAssessment();
-                initializeDashboard();
-            } else {
-                appState.failedAttempts++;
-                document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
-                
-                inputField.classList.add('border-cboRed', 'bg-cboRed/10');
-                setTimeout(() => {
-                    inputField.classList.remove('border-cboRed', 'bg-cboRed/10');
-                }, 800);
-                
-                showToast("Access Denied: Inaccurate tracking code. Try again.");
-            }
-        }
-
-        // --- 9. TEACHER CONSOLE ROUTERS ---
-        function toggleAdminDashboard() {
-            document.getElementById('dashboard-view').classList.add('hidden');
-            document.getElementById('lesson-view').classList.add('hidden');
-            document.getElementById('admin-view').classList.remove('hidden');
-        }
-
-        function resetStudentProgress() {
-            if(confirm("Are you sure you want to purge evaluation metrics?")) {
-                appState.failedAttempts = 0;
-                document.getElementById('admin-fail-count').innerText = "0";
-                showToast("Evaluation Logs Reset Successfully.");
-            }
-        }
-
-        function publishResource() {
-            const title = document.getElementById('resource-title').value.trim();
-            const url = document.getElementById('resource-url').value.trim();
-            
-            if(!title || !url) {
-                showToast("Provide both Asset Title and Web URL.");
-                return;
-            }
-            
-            appState.externalResources.push({ title: `🔗 ${title}`, url: url });
-            document.getElementById('resource-title').value = '';
-            document.getElementById('resource-url').value = '';
-            
-            renderResources();
-            showToast("Asset deployed to all nodes successfully.");
-        }
-
-        function generateCertificate() {
-            if (appState.completedLessons.size < appState.totalLessons) return;
-            showToast("Connecting to Mitua Massive Certification Registry Database Node...");
-        }
-    </script>
-</body>
-</html>
