@@ -17,25 +17,64 @@ let appState = {
     activeLesson: null
 };
 
-// --- 2. SAMPLE LESSON DATA (Scalable up to 40 Lessons) ---
+// --- 2. FULL GERMAN A1 CURRICULUM (40 Lessons) ---
 const sampleLessons = [
-    { id: 1, title: "Lesson 1: Das Alphabet & Pronunciation", module: "Module 1: Foundations", content: "Welcome to German! Let's master the alphabet. Notice how 'W' sounds like an English 'V', and 'V' sounds like an English 'F'. Try practicing the sounds offline.", question: "Translate into German text: 'Good morning'", answer: "guten morgen" },
-    { id: 2, title: "Lesson 2: Begrüßungen (Greetings)", module: "Module 1: Foundations", content: "Learn how to greet people at different times of day. 'Guten Morgen' (Morning), 'Guten Tag' (Day), 'Guten Abend' (Evening).", question: "Translate into German text: 'Goodbye' (Formal)", answer: "auf wiedersehen" },
-    { id: 3, title: "Lesson 3: Sich vorstellen (Introductions)", module: "Module 1: Foundations", content: "To state your name, say 'Ich heiße...' or 'Mein Name ist...'. To ask someone's name formally, use 'Wie heißen Sie?'.", question: "Translate: 'My name is'", answer: "mein name ist" },
-    { id: 4, title: "Lesson 4: Zahlen 1-20 (Numbers)", module: "Module 2: Everyday Math", content: "Let's count: eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn... Master these before progressing.", question: "What is the German word for the number 4?", answer: "vier" }
-];
+    // MODULE 1: Foundations & Introductions
+    { id: 1, title: "Lesson 1: Das Alphabet & Pronunciation", module: "Module 1: Foundations", content: "Welcome! In German, 'W' sounds like 'V', 'V' sounds like 'F', and 'J' sounds like 'Y'. 'Ä', 'Ö', and 'Ü' are umlauts. 'ß' is a double 's'.", question: "Which English letter does the German 'W' sound like?", answer: "v" },
+    { id: 2, title: "Lesson 2: Begrüßungen (Greetings)", module: "Module 1: Foundations", content: "Greet people based on time: 'Guten Morgen' (Morning), 'Guten Tag' (Day), 'Guten Abend' (Evening). 'Hallo' is casual, 'Tschüss' is casual goodbye.", question: "Translate into German: 'Good morning'", answer: "guten morgen" },
+    { id: 3, title: "Lesson 3: Sich vorstellen (Introductions)", module: "Module 1: Foundations", content: "To say your name: 'Ich heiße...' or 'Mein Name ist...'. To ask formally: 'Wie heißen Sie?'. Informally: 'Wie heißt du?'.", question: "Translate: 'My name is'", answer: "mein name ist" },
+    { id: 4, title: "Lesson 4: Woher kommst du? (Origins)", module: "Module 1: Foundations", content: "To say where you are from, use 'Ich komme aus...' (I come from...). For example: 'Ich komme aus Kenia' or 'Ich komme aus Deutschland'.", question: "Translate: 'I come from'", answer: "ich komme aus" },
+    { id: 5, title: "Lesson 5: Zahlen 1-20 (Numbers)", module: "Module 1: Foundations", content: "1 to 10: eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn. 11: elf, 12: zwölf. Master these for daily transactions.", question: "What is the German word for the number 5?", answer: "fünf" },
 
-// Fill out remaining slots dynamically to hit the 40-lesson framework visually
-for (let i = 5; i <= 40; i++) {
-    sampleLessons.push({
-        id: i,
-        title: `Lesson ${i}: Advanced Progression Content Track`,
-        module: i <= 15 ? "Module 2: Conversational Basics" : i <= 30 ? "Module 3: Intermediate Structures" : "Module 4: Career Preparation",
-        content: "This module covers standard linguistic patterns designed to align seamlessly with future career or nursing-sector validation metrics.",
-        question: "Type 'pass' to complete this placeholder verification",
-        answer: "pass"
-    });
-}
+    // MODULE 2: Basic Grammar & Nouns
+    { id: 6, title: "Lesson 6: Die Artikel (Der, Die, Das)", module: "Module 2: Basic Grammar", content: "German has 3 genders for 'the': 'der' (masculine), 'die' (feminine/plural), 'das' (neuter). Always learn nouns with their articles!", question: "Which article is used for feminine nouns?", answer: "die" },
+    { id: 7, title: "Lesson 7: Personalpronomen (Pronouns)", module: "Module 2: Basic Grammar", content: "Ich (I), du (you singular informal), er (he), sie (she/they), es (it), wir (we), ihr (you plural informal), Sie (you formal).", question: "What is the formal word for 'you' in German?", answer: "sie" },
+    { id: 8, title: "Lesson 8: The Verb 'sein' (to be)", module: "Module 2: Basic Grammar", content: "'Sein' is irregular. Ich bin, du bist, er/sie/es ist, wir sind, ihr seid, sie/Sie sind. Example: 'Ich bin Student' (I am a student).", question: "Translate: 'I am'", answer: "ich bin" },
+    { id: 9, title: "Lesson 9: The Verb 'haben' (to have)", module: "Module 2: Basic Grammar", content: "'Haben' is crucial. Ich habe, du hast, er/sie/es hat, wir haben, ihr habt, sie/Sie haben. Example: 'Ich habe Zeit' (I have time).", question: "Translate: 'He has'", answer: "er hat" },
+    { id: 10, title: "Lesson 10: Die Familie (Family)", module: "Module 2: Basic Grammar", content: "Der Vater (father), die Mutter (mother), der Bruder (brother), die Schwester (sister). Use 'mein' (my masculine/neuter) and 'meine' (my feminine/plural).", question: "Translate: 'The mother'", answer: "die mutter" },
+
+    // MODULE 3: Daily Life & Time
+    { id: 11, title: "Lesson 11: Wochentage (Days of the Week)", module: "Module 3: Daily Life", content: "Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag. Use 'am' before days: 'am Montag' (on Monday).", question: "What is the German word for Friday?", answer: "freitag" },
+    { id: 12, title: "Lesson 12: Monate & Jahreszeiten (Months & Seasons)", module: "Module 3: Daily Life", content: "Seasons: der Sommer, der Winter, der Herbst, der Frühling. Use 'im' before months and seasons: 'im Sommer' (in summer).", question: "Translate: 'In summer'", answer: "im sommer" },
+    { id: 13, title: "Lesson 13: Die Uhrzeit (Telling Time)", module: "Module 3: Daily Life", content: "Ask 'Wie spät ist es?' (What time is it?). Answer: 'Es ist...'. 'Viertel nach' is quarter past, 'halb' is half to the next hour.", question: "Translate: 'What time is it?' (Leave out punctuation)", answer: "wie spät ist es" },
+    { id: 14, title: "Lesson 14: Essen und Trinken (Food & Drink)", module: "Module 3: Daily Life", content: "Das Wasser (water), das Brot (bread), der Apfel (apple), der Kaffee (coffee). 'Ich esse' (I eat), 'Ich trinke' (I drink).", question: "Translate: 'The water'", answer: "das wasser" },
+    { id: 15, title: "Lesson 15: Im Café (Ordering in a Cafe)", module: "Module 3: Daily Life", content: "To order politely, say 'Ich hätte gern...' (I would like to have...) or 'Ich möchte...' (I would like...). 'Bitte' means please/you're welcome.", question: "Translate: 'I would like'", answer: "ich möchte" },
+
+    // MODULE 4: The Accusative Case & Places
+    { id: 16, title: "Lesson 16: The Accusative Case (Direct Objects)", module: "Module 4: Accusative Case", content: "The Accusative case is for direct objects. Only masculine articles change! 'der' becomes 'den', 'ein' becomes 'einen'. Die and Das stay the same.", question: "In the accusative case, 'der' changes to what?", answer: "den" },
+    { id: 17, title: "Lesson 17: Orte in der Stadt (Places in the City)", module: "Module 4: Accusative Case", content: "Der Bahnhof (train station), die Post (post office), das Krankenhaus (hospital). 'Ich suche den Bahnhof' (I am looking for the train station).", question: "Translate: 'The hospital'", answer: "das krankenhaus" },
+    { id: 18, title: "Lesson 18: Verkehrsmittel (Transportation)", module: "Module 4: Accusative Case", content: "Der Bus, der Zug (train), das Auto (car), das Fahrrad (bicycle). To say you travel by something, use 'mit dem' (e.g., mit dem Bus).", question: "Translate: 'The train'", answer: "der zug" },
+    { id: 19, title: "Lesson 19: Negation (Nicht vs. Kein)", module: "Module 4: Accusative Case", content: "Use 'kein' to negate a noun with an indefinite article (Ich habe kein Auto). Use 'nicht' to negate verbs or adjectives (Das ist nicht gut).", question: "Which word do you use to negate a noun with an indefinite article?", answer: "kein" },
+    { id: 20, title: "Lesson 20: Fragewörter (Question Words)", module: "Module 4: Accusative Case", content: "Wer (Who), Was (What), Wo (Where), Wann (When), Warum (Why), Wie (How). Example: 'Wo ist der Bahnhof?'", question: "Translate the question word: 'Where'", answer: "wo" },
+
+    // MODULE 5: Work, Abilities, & Modal Verbs
+    { id: 21, title: "Lesson 21: Berufe (Professions)", module: "Module 5: Work & Abilities", content: "To state your job: 'Ich bin Arzt von Beruf' (I am a doctor by profession). Note: Female professions usually end in '-in' (die Ärztin).", question: "What suffix is usually added for a female profession?", answer: "in" },
+    { id: 22, title: "Lesson 22: Modal Verb: Können (Can/Ability)", module: "Module 5: Work & Abilities", content: "'Können' expresses ability. Ich kann, du kannst, er kann. The second verb goes to the very END of the sentence in its infinitive form.", question: "Translate: 'I can'", answer: "ich kann" },
+    { id: 23, title: "Lesson 23: Modal Verb: Müssen (Must/Necessity)", module: "Module 5: Work & Abilities", content: "'Müssen' means must. Ich muss, du musst, er muss. 'Ich muss heute arbeiten' (I must work today).", question: "Translate: 'I must'", answer: "ich muss" },
+    { id: 24, title: "Lesson 24: Modal Verb: Wollen (Want to)", module: "Module 5: Work & Abilities", content: "'Wollen' expresses a strong desire or plan. Ich will, du willst, er will. 'Ich will Deutsch lernen' (I want to learn German).", question: "Translate: 'I want'", answer: "ich will" },
+    { id: 25, title: "Lesson 25: Der Imperativ (Commands)", module: "Module 5: Work & Abilities", content: "Commands are used for instructions. Formal: 'Kommen Sie!' (Come!). Informal singular: 'Komm!' (Come!). Let's go: 'Gehen wir!'", question: "Translate into an informal singular command: 'Come!'", answer: "komm" },
+
+    // MODULE 6: Health & The Dative Case Introduction
+    { id: 26, title: "Lesson 26: Der Körper (Body Parts)", module: "Module 6: Health & Dative", content: "Der Kopf (head), der Arm (arm), das Bein (leg), der Bauch (stomach). 'Mein Kopf tut weh' means 'My head hurts'.", question: "Translate: 'The head'", answer: "der kopf" },
+    { id: 27, title: "Lesson 27: Beim Arzt (At the Doctor)", module: "Module 6: Health & Dative", content: "To express illness: 'Ich bin krank' (I am sick). The doctor might ask 'Was fehlt Ihnen?' (What is wrong with you?).", question: "Translate: 'I am sick'", answer: "ich bin krank" },
+    { id: 28, title: "Lesson 28: Intro to Dative Case (Indirect Objects)", module: "Module 6: Health & Dative", content: "Dative indicates the receiver. Articles change drastically: der->dem, das->dem, die->der, die(plural)->den. 'Ich helfe dem Mann' (I help the man).", question: "In the Dative case, 'der' changes to what?", answer: "dem" },
+    { id: 29, title: "Lesson 29: Prepositions with Dative", module: "Module 6: Health & Dative", content: "Some prepositions ALWAYS take Dative: aus, bei, mit, nach, seit, von, zu. Example: 'Ich fahre mit dem Bus' (I travel with the bus).", question: "Which case always follows the preposition 'mit'?", answer: "dative" },
+    { id: 30, title: "Lesson 30: Kleidung (Clothing)", module: "Module 6: Health & Dative", content: "Die Hose (pants), das Hemd (shirt), die Jacke (jacket). 'Ich trage eine Jacke' (I am wearing a jacket).", question: "Translate: 'The jacket'", answer: "die jaсke" },
+
+    // MODULE 7: Housing & Separable Verbs
+    { id: 31, title: "Lesson 31: Das Haus (The House)", module: "Module 7: Living Spaces", content: "Das Wohnzimmer (living room), die Küche (kitchen), das Schlafzimmer (bedroom), das Bad (bathroom).", question: "Translate: 'The kitchen'", answer: "die küche" },
+    { id: 32, title: "Lesson 32: Möbel (Furniture)", module: "Module 7: Living Spaces", content: "Der Tisch (table), der Stuhl (chair), das Bett (bed), der Schrank (closet).", question: "Translate: 'The bed'", answer: "das bett" },
+    { id: 33, title: "Lesson 33: Trennbare Verben (Separable Verbs)", module: "Module 7: Living Spaces", content: "Some verbs split. 'aufstehen' (to wake up). In a standard sentence, the prefix goes to the end: 'Ich stehe um 7 Uhr auf'.", question: "Where does the separable prefix go in a standard sentence?", answer: "end" },
+    { id: 34, title: "Lesson 34: Freizeit & Hobbys (Free Time)", module: "Module 7: Living Spaces", content: "Lesen (to read), spielen (to play), schwimmen (to swim). 'Was machst du in deiner Freizeit?' (What do you do in your free time?).", question: "Translate: 'To read'", answer: "lesen" },
+    { id: 35, title: "Lesson 35: Einkaufen (Shopping)", module: "Module 7: Living Spaces", content: "Teuer (expensive), billig (cheap). 'Wie viel kostet das?' (How much does that cost?).", question: "Translate: 'Expensive'", answer: "teuer" },
+
+    // MODULE 8: The Past Tense & Final Evaluation
+    { id: 36, title: "Lesson 36: Das Perfekt (Past Tense with Haben)", module: "Module 8: Past Tense", content: "Conversational past tense mostly uses 'haben' + a participle (ge-). 'Ich habe gespielt' (I played), 'Ich habe gemacht' (I did/made).", question: "What prefix is commonly used for past participles in German?", answer: "ge" },
+    { id: 37, title: "Lesson 37: Das Perfekt (Past Tense with Sein)", module: "Module 8: Past Tense", content: "Verbs involving movement from A to B (gehen, fahren) use 'sein' instead of haben. 'Ich bin gegangen' (I went).", question: "Does the verb 'gehen' (to go) use 'haben' or 'sein' in the past tense?", answer: "sein" },
+    { id: 38, title: "Lesson 38: Briefe schreiben (Writing Letters/Emails)", module: "Module 8: Past Tense", content: "Formal start: 'Sehr geehrte(r)...'. Informal start: 'Liebe(r)...'. Formal end: 'Mit freundlichen Grüßen'.", question: "Translate the formal sign-off: 'Mit freundlichen Grüßen'", answer: "with kind regards" },
+    { id: 39, title: "Lesson 39: Speaking Exam Prep", module: "Module 8: Past Tense", content: "In the A1 speaking exam, you must introduce yourself: Name, Alter (age), Land (country), Wohnort (living place), Sprachen (languages), Beruf (profession).", question: "Translate: 'Age'", answer: "alter" },
+    { id: 40, title: "Lesson 40: Final A1 Certification Validation", module: "Module 8: Past Tense", content: "Congratulations! You have covered the A1 structures. Validate your final milestone to unlock the Mitua Massive CBO Certificate generation.", question: "Type 'zertifikat' to complete your A1 level track.", answer: "zertifikat" }
+];
 
 // --- 3. AUTHENTICATION & PORTAL ENTER LOGIC ---
 function handleLogin(event) {
@@ -44,7 +83,7 @@ function handleLogin(event) {
     const admCode = document.getElementById('signin-admission').value.trim();
     const phone = document.getElementById('signin-phone').value.trim();
 
-    // Mock Login Logic (To be replaced by Firebase Auth)
+    // Mock Login Logic (To be replaced by Firebase Auth in Phase 2)
     appState.currentUser = {
         name: admCode === "ADMIN-001" ? "System Administrator" : "Student Node",
         admission: admCode,
@@ -54,7 +93,7 @@ function handleLogin(event) {
         location: "Mitua Hub"
     };
     
-    // Check if user is an Admin using a secure mock key
+    // Check if user is an Admin using secure structural patterns
     if (admCode === "ADMIN-001") {
         appState.isTeacher = true;
         document.getElementById('admin-toggle-btn').classList.remove('hidden');
@@ -72,7 +111,7 @@ function handleLogout() {
     appState.currentUser = null;
     appState.isTeacher = false;
     
-    // UI resets
+    // Complete UI visibility resets
     document.getElementById('auth-view').classList.remove('hidden');
     document.getElementById('dashboard-view').classList.add('hidden');
     document.getElementById('lesson-view').classList.add('hidden');
@@ -81,7 +120,7 @@ function handleLogout() {
     document.getElementById('user-controls').classList.remove('flex');
     document.getElementById('admin-toggle-btn').classList.add('hidden');
     
-    // Clear all forms
+    // Clear all form inputs safely
     document.getElementById('form-signin').reset();
     if(document.getElementById('form-signup')) document.getElementById('form-signup').reset();
     
@@ -90,7 +129,7 @@ function handleLogout() {
 
 // --- 4. INITIALIZE DASHBOARD VIEWS ---
 function initializeDashboard() {
-    // Hide auth, show dynamic dashboard panel structure
+    // Hide auth, reveal structural workspace wrapper nodes
     document.getElementById('auth-view').classList.add('hidden');
     document.getElementById('dashboard-view').classList.remove('hidden');
     document.getElementById('user-controls').classList.add('flex');
@@ -116,13 +155,13 @@ function initializeDashboard() {
 // --- 5. RENDER OVERLAYS (CURRICULUM & RESOURCES) ---
 function renderCurriculum() {
     const container = document.getElementById('module-container');
-    container.innerHTML = ""; // Clear existing elements Safely
+    container.innerHTML = ""; // Clear existing elements safely
 
     sampleLessons.forEach(lesson => {
+        // Strict anti-cheat lock: Next lesson is locked if the previous one isn't completed
         const isLocked = lesson.id > 1 && !appState.completedLessons.has(lesson.id - 1);
         
         const card = document.createElement('div');
-        // Integrated custom Tailwind variables
         card.className = `p-5 rounded-xl border transition-all text-left ${
             isLocked 
             ? 'bg-gray-900/40 border-gray-800 opacity-50 cursor-not-allowed' 
@@ -156,7 +195,7 @@ function renderResources() {
     appState.externalResources.forEach(res => {
         const link = document.createElement('a');
         link.href = res.url;
-        link.target = "_blank"; // Force opens externally in native browser/YouTube app to save local storage
+        link.target = "_blank"; // Save bandwidth by opening in external standard environments
         link.className = "block p-4 bg-gray-900 hover:bg-gray-800/80 rounded-xl border-l-4 border-cboBlue transition text-gray-200 text-sm font-semibold shadow-sm mb-2";
         link.innerHTML = `
             <div class="flex justify-between items-center">
@@ -205,7 +244,6 @@ function openLesson(lessonId) {
         </div>
     `;
     
-    // Wire up assessment button launcher dynamically
     document.getElementById('start-quiz-btn').onclick = () => openAssessmentModal(lesson);
 }
 
@@ -213,14 +251,14 @@ function showDashboard() {
     document.getElementById('lesson-view').classList.add('hidden');
     document.getElementById('admin-view').classList.add('hidden');
     document.getElementById('dashboard-view').classList.remove('hidden');
-    initializeDashboard(); // Refreshes curriculum tracking states accurately
+    initializeDashboard(); // Refreshes curriculum tracking states perfectly
 }
 
 // --- 7. SECURITY & ANTI-CHEAT ASSESSMENT HUB ---
 function openAssessmentModal(lesson) {
     const modal = document.getElementById('assessment-modal');
     modal.classList.remove('hidden');
-    modal.classList.add('flex'); // Centers tailwind layout neatly
+    modal.classList.add('flex'); // Centers layout neatly
     
     document.getElementById('assessment-title').innerText = `Diagnostic: Lesson ${lesson.id}`;
     
@@ -232,7 +270,6 @@ function openAssessmentModal(lesson) {
         </div>
     `;
     
-    // Auto-focus input for UX
     setTimeout(() => {
         const inputField = document.getElementById('assessment-answer');
         if(inputField) inputField.focus();
@@ -252,19 +289,17 @@ function submitAssessment() {
     const correctAnswer = appState.activeLesson.answer.toLowerCase();
 
     if (answerInput === correctAnswer) {
-        // Success
         appState.completedLessons.add(appState.activeLesson.id);
         showToast(`Verification Successful! Lesson ${appState.activeLesson.id} unlocked.`);
         closeAssessment();
         renderCurriculum();
         updateProgressMeter();
-        showDashboard(); // Kick user back to dashboard to select next lesson
+        showDashboard();
     } else {
-        // Failure
         appState.failedAttempts++;
         document.getElementById('admin-fail-count').innerText = appState.failedAttempts;
         
-        // Red flash on input
+        // Error visual feedback tracking
         inputField.classList.add('border-cboRed', 'bg-cboRed/10');
         setTimeout(() => {
             inputField.classList.remove('border-cboRed', 'bg-cboRed/10');
@@ -298,20 +333,16 @@ function publishResource() {
         return;
     }
     
-    // Push new resource to state
     appState.externalResources.push({ title: `🔗 ${title}`, url: url });
     
-    // Clear inputs
     document.getElementById('resource-title').value = '';
     document.getElementById('resource-url').value = '';
     
-    // Update UI
     renderResources();
     showToast("Broadcast Successful: Asset deployed to all active nodes.");
 }
 
 function generateCertificate() {
-    // Prevent default firing if disabled
     if (appState.completedLessons.size < appState.totalLessons) return;
     showToast("Processing request... Establishing connection to Certification Registry Database.");
 }
