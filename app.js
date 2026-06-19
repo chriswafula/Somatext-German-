@@ -75,6 +75,46 @@ const sampleLessons = [
     { id: 39, title: "Lesson 39: Speaking Exam Prep", module: "Module 8: Past Tense", content: "In the A1 speaking exam, you must introduce yourself: Name, Alter (age), Land (country), Wohnort (living place), Sprachen (languages), Beruf (profession).", question: "Translate: 'Age'", answer: "alter" },
     { id: 40, title: "Lesson 40: Final A1 Certification Validation", module: "Module 8: Past Tense", content: "Congratulations! You have covered the A1 structures. Validate your final milestone to unlock the Mitua Massive CBO Certificate generation.", question: "Type 'zertifikat' to complete your A1 level track.", answer: "zertifikat" }
 ];
+// --- 2.5 TOAST GENERATOR UTILITY ---
+function showToast(message) {
+    const toast = document.getElementById('custom-toast');
+    if (!toast) return; // Safety check
+    
+    document.getElementById('toast-message').innerText = message;
+    
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+        toast.classList.remove('translate-y-10', 'opacity-0');
+    }, 10);
+    
+    setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0');
+        setTimeout(() => { toast.classList.add('hidden'); }, 500);
+    }, 4000);
+}
+
+// --- 2.6 MENU NAVIGATION FLOW ---
+function showAuthSelection() {
+    document.getElementById('auth-selection').classList.remove('hidden');
+    document.getElementById('form-signin').classList.add('hidden');
+    document.getElementById('form-signup').classList.add('hidden');
+    
+    document.getElementById('form-signin').reset();
+    if(document.getElementById('form-signup')) document.getElementById('form-signup').reset();
+}
+
+function showSignInForm() {
+    document.getElementById('auth-selection').classList.add('hidden');
+    document.getElementById('form-signup').classList.add('hidden');
+    document.getElementById('form-signin').classList.remove('hidden');
+}
+
+function showSignUpForm() {
+    document.getElementById('auth-selection').classList.add('hidden');
+    document.getElementById('form-signin').classList.add('hidden');
+    document.getElementById('form-signup').classList.remove('hidden');
+}
+
 
 // --- 3. AUTHENTICATION & PORTAL ENTER LOGIC ---
 function handleLogin(event) {
